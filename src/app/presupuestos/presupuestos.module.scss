@@ -1,0 +1,24 @@
+.main {
+    width: 100%;
+    min-height: 100vh;
+    padding: 5rem 10rem;
+    background-color: var(--verde-oscuro);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    .title {
+        color: var(--blanco);
+    }
+
+    .container {
+        width: 80%;
+        height: 50vh;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+}
