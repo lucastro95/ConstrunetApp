@@ -1,8 +1,8 @@
 import React from 'react'
 import styles from './final.module.scss'
-import CardPrincipal from '@/ui/presupuesto-final/CardPrincipal'
-import CheckCard from '@/ui/presupuesto-final/CheckCard'
-import CardProveedor from '@/ui/presupuesto-final/CardProveedor'
+import CardPrincipal from '../../../ui/presupuesto-final/CardPrincipal'
+import CardProveedor from '../../../ui/presupuesto-final/CardProveedor'
+import CheckCard from '../../../ui/presupuesto-final/CheckCard'
 
 const page = () => {
   return (

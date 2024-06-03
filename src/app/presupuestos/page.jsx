@@ -1,9 +1,9 @@
 "use client";
 import React, { useState } from 'react'
 import styles from './presupuestos.module.scss'
-import Check from '@/ui/presupuestos/Check'
-import Button from '@/ui/common/Button'
 import { useRouter } from 'next/navigation';
+import Check from '../../ui/presupuestos/Check';
+import Button from '../../ui/common/Button';
 
 const page = () => {
   const router = useRouter();
@@ -24,7 +24,7 @@ const page = () => {
     <main className={styles.main}>
       <h1 className={styles.title}>¿Qué buscas en tu presupuesto?</h1>
       <div className={styles.container}>
-        <Check 
+        <Check
           text={'Menor tiempo de entrega'}
           name={'entrega'}
           selections={selections}
