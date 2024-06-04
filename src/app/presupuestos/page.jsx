@@ -4,20 +4,30 @@ import styles from './presupuestos.module.scss'
 import { useRouter } from 'next/navigation';
 import Check from '../../ui/presupuestos/Check';
 import Button from '../../ui/common/Button';
+import getPresupuesto from '../../actions/getPresupuesto';
 
 const page = () => {
   const router = useRouter();
 
   const [selections, setSelections] = useState({
-    entrega: false,
-    precio: false,
-    proveedores: false,
-    calidad: false,
+    tiempoEntrega: false,
+    menorPrecio: false,
+    reputacion: false,
+    calidadMateriales: false,
   });
 
-  const handleGeneratePresupuesto = () => {
-    console.log('Selections before redirect:', selections);
-    router.push('/presupuestos/presupuesto-final');
+  const handleGeneratePresupuesto =async () => {
+    // aqui se hacen los cambios/ update de los datos del curso 
+    console.log(selections);
+    try{
+      const response = await getPresupuesto(selections);
+      console.log(response);
+      alert("Course data has been successfully updated!");
+      router.push("/presupuestos/presupuesto-final");
+  }
+  catch(error){
+      console.log(error);
+  }
   };
 
   return (
@@ -32,7 +42,7 @@ const page = () => {
           />
         <Check 
           text={'Menor precio posible'}
-          name={'precio'}
+          name={'menorPrecio'}
           selections={selections}
           setSelections={setSelections}
           />
