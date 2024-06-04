@@ -17,7 +17,7 @@ const CardProveedor = ({ proveedor }) => {
                 }
             </div>
             <div className={styles.envio}>
-                <p></p>
+                <p>Envío ${proveedor.precioEnvio}</p>
                 <p>Llega en {proveedor.tiempoEntrega} día/s</p>
             </div>
         </div>

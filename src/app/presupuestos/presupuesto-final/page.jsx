@@ -11,7 +11,7 @@ const page = () => {
   const presupuesto = useSelector((state) => state.presupuesto);
 
   useEffect(() => {
-    // console.log('Selections:', selections);
+    console.log('Selections:', selections);
     console.log('Presupuesto:', presupuesto);
     // console.log('Proveedores:', presupuesto.data.presupuestos);
   }, [selections, presupuesto]);
@@ -22,9 +22,9 @@ const page = () => {
       <div className={styles.principal}>
         <CardPrincipal precio={`$${presupuesto.data.precioFinal}`} />
         <div className={styles.checkcontainer}>
-          {selections.tiempoEntrega && <CheckCard text={'Menor tiempo de entrega'} />}
+          {selections.entrega && <CheckCard text={'Menor tiempo de entrega'} />}
           {selections.menorPrecio && <CheckCard text={'Menor precio posible'} />}
-          {selections.calidadMateriales && <CheckCard text={'Mayor calidad de materiales'} />}
+          {selections.calidad && <CheckCard text={'Mayor calidad de materiales'} />}
           {/* {selections.reputacion && <CheckCard text={'Menor tiempo de entrega'}/>} */}
         </div>
       </div>
