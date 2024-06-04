@@ -12,9 +12,9 @@ export default async function getPresupuesto(filters) {
             },
         });
 
-        console.log("Full Response:", response); 
+        // console.log("Full Response:", response); 
         const data = await response.json();
-        console.log("Parsed JSON Data:", data);
+        // console.log("Parsed JSON Data:", data);
         return data;
     } catch (error) {
         console.error("Error:", error);

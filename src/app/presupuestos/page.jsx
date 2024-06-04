@@ -5,9 +5,14 @@ import { useRouter } from 'next/navigation';
 import Check from '../../ui/presupuestos/Check';
 import Button from '../../ui/common/Button';
 import getPresupuesto from '../../actions/getPresupuesto';
+import { setPresupuesto } from '../../redux/slices/presupuestoSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { setSelecciones } from '../../redux/slices/selectionsSlice';
 
 const page = () => {
   const router = useRouter();
+  const dispatch = useDispatch();
+  
 
   const [selections, setSelections] = useState({
     tiempoEntrega: false,
@@ -16,12 +21,11 @@ const page = () => {
     calidadMateriales: false,
   });
 
-  const handleGeneratePresupuesto =async () => {
-    // aqui se hacen los cambios/ update de los datos del curso 
-    console.log(selections);
+  const handleGeneratePresupuesto = async () => {
     try{
       const response = await getPresupuesto(selections);
-      console.log(response);
+      dispatch(setPresupuesto(response));
+      dispatch(setSelecciones(selections));
       alert("Course data has been successfully updated!");
       router.push("/presupuestos/presupuesto-final");
   }
@@ -46,12 +50,12 @@ const page = () => {
           selections={selections}
           setSelections={setSelections}
           />
-        <Check 
+        {/* <Check 
           text={'Menor cantidad de proveedores'}
           name={'proveedores'}
           selections={selections}
           setSelections={setSelections}
-          />
+          /> */}
         <Check 
           text={'Mayor calidad de materiales'}
           name={'calidad'}
