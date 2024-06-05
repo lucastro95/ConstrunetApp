@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import styles from './cardproveedor.module.scss'
 
 const CardProveedor = ({ proveedor }) => {
@@ -17,6 +17,7 @@ const CardProveedor = ({ proveedor }) => {
                 }
             </div>
             <div className={styles.envio}>
+            <div className={styles.divider}></div>
                 <p>Envío ${proveedor.precioEnvio}</p>
                 <p>Llega en {proveedor.tiempoEntrega} día/s</p>
             </div>
