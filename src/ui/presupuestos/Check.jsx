@@ -14,15 +14,15 @@ const Check = ({ text, name, selections, setSelections }) => {
             [name]: newChecked,
         });
     }
-
     return (
         <div className={styles.check}>
             <div 
                 className={styles.box}
                 onClick={handleClick}
                 >
-                {checked &&
-                    <FaCheck style={{ color: "var(--amarillo)", fontSize: "2rem" }} />
+                {checked ?
+                    <FaCheck style={{ color: "var(--amarillo)", fontSize: "2rem" }} /> :
+                    <FaCheck style={{ color: "var(--verde-oscuro)", fontSize: "2rem" }} />
                 }
             </div>
             <p className={styles.text}>{text}</p>
