@@ -5,11 +5,14 @@ import CardProveedor from "../ui/presupuesto-final/CardProveedor";
 import getPresupuestosConfir from "../actions/getPresupuestosConfir";
 import styles from "./confirmed.module.scss";
 
+
 // import icono
 import { SiGooglecontaineroptimizedos } from "react-icons/si";
 
 export default function Home() {
     const [presupuestos, setPresupuestos] = useState([]);
+    // useState para el loading
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -23,11 +26,36 @@ export default function Home() {
                 setPresupuestos(presupuestos);
             } catch (error) {
                 console.log(error);
+            }finally{
+                setLoading(false);
             }
         };
 
         fetchData();
     }, []);
+
+    if (loading) {
+        return (
+          <main className={styles.main}>
+            <h1 className={styles.title}>Presupuesto Confirmados</h1>
+            
+            <a 
+            href="/presupuestos"
+            >
+
+            <div className={styles.container}>
+                <h3>¡Busquemos tu mejor opcion!.</h3>
+                <SiGooglecontaineroptimizedos size={75} />
+            </div>
+            </a>
+
+            <div className={styles.proveedores}>
+                <h2>Buscando...</h2>  
+            </div>
+        </main>
+        )
+    }
+
     return (
         <main className={styles.main}>
             <h1 className={styles.title}>Presupuesto Confirmados</h1>
