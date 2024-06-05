@@ -37,7 +37,7 @@ export default function Home() {
     if (loading) {
         return (
           <main className={styles.main}>
-            <h1 className={styles.title}>Presupuesto Confirmados</h1>
+            <h1 className={styles.title}>Presupuestos Confirmados</h1>
             
             <a 
             href="/presupuestos"
