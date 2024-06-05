@@ -4,7 +4,7 @@ import styles from './presupuestos.module.scss'
 import { useRouter } from 'next/navigation';
 import Check from '../../ui/presupuestos/Check';
 import Button from '../../ui/common/Button';
-import getPresupuesto from '../../actions/getPresupuesto';
+import getPresupuestoOptimo from '../../actions/getPresupuestoOptimo';
 import { setPresupuesto } from '../../redux/slices/presupuestoSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSelecciones } from '../../redux/slices/selectionsSlice';
@@ -23,10 +23,10 @@ const page = () => {
 
   const handleGeneratePresupuesto = async () => {
     try{
-      const response = await getPresupuesto(selections);
+      const response = await getPresupuestoOptimo(selections);
       dispatch(setPresupuesto(response));
       dispatch(setSelecciones(selections));
-      alert("Course data has been successfully updated!");
+      alert("¡Hemos encontrado el presupuesto ideal para ti!");
       router.push("/presupuestos/presupuesto-final");
   }
   catch(error){

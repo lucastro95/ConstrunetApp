@@ -1,10 +1,7 @@
-"use server"
-export default async function getPresupuesto(filters) {
-
-    console.log("Filters:", filters);
-
+"use server";
+export default async function getPresupuestosConfir() {
     try {
-        const response =  await fetch(`http://localhost:8080/presupuestos?menorPrecio=${filters.menorPrecio}&tiempoEntrega=${filters.tiempoEntrega}&calidadMateriales=${filters.calidadMateriales}&reputacion=${filters.reputacion}`, {
+        const response = await fetch(`http://localhost:8080/presupuestos`, {
             method: "GET",
             cache: "no-store",
             headers: {
@@ -12,7 +9,7 @@ export default async function getPresupuesto(filters) {
             },
         });
 
-        // console.log("Full Response:", response); 
+        // console.log("Full Response:", response);
         const data = await response.json();
         // console.log("Parsed JSON Data:", data);
         return data;
