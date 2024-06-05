@@ -6,9 +6,11 @@ import styles from "./HomeButton.module.scss";
 const HomeButton = ({ text, href }) => {
     return (
         <div className={styles.container}>
-            <button className={styles.button} href={href}>
+            <a href={href}>
+            <button className={styles.button}>
                 {text}
             </button>
+            </a>
         </div>
     );
 };

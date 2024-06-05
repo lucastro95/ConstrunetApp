@@ -3,7 +3,7 @@
     min-height: 100vh;
     padding: 5rem 10rem;
     background-color: var(--verde-oscuro);
-
+    justify-content: center;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -14,13 +14,15 @@
     }
 
     .principal {
+        padding: 2rem;
         width: 100%;
         display: flex;
+        flex-direction: row;
         justify-content: space-between;
         align-items: center;
 
         .checkcontainer {
-            width: 50%;
+            width: 30%;
         }
     }
 
