@@ -19,10 +19,6 @@ export default function Home() {
             try {
                 const presupuestos = await getPresupuestosConfir();
                 console.log(presupuestos);
-                // dispatch(setPresupuesto(response));
-                // dispatch(setSelecciones(selections));
-                // alert("Course data has been successfully updated!");
-                // router.push("/presupuestos/presupuesto-final");
                 setPresupuestos(presupuestos);
             } catch (error) {
                 console.log(error);
