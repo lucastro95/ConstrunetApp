@@ -2,26 +2,23 @@ import React from "react";
 import styles from "./cardproveedor.module.scss";
 
 const CardProveedor = ({ proveedor }) => {
-
+    console.log(proveedor);
     return (
         <div className={styles.card}>
-            <div className={styles.nombre}>{proveedor.NombreProveedor}</div>
-            <div className={styles.detalle}>
-            <h2 className={styles.precioParcial}>{proveedor.precioParcial ? `${proveedor.precioParcial}` : ''}</h2>
-                {proveedor.materiales.map((material, index) => (
-                    <div className={styles.item} key={index}>
-                        <p>
-                            {material.cantidad}u - {material.nombre}
-                        </p>
-                        <p>${material.precio}</p>
+            <h3 className={styles.name}>{proveedor.NombreProveedor}</h3>
+            {proveedor.materiales.map(material => (
+                <>
+                    <div className={styles.material}>
+                        <p className={styles.cant}>{material.cantidad}u.</p>
+                        <p className={styles.nomb}>{material.nombre} {material.marca}</p>
+                        <p className={styles.precio}>${material.precio}</p>
                     </div>
-                ))}
-            </div>
-            <div className={styles.envio}>
-                <div className={styles.divider}></div>
-                <p>Envío ${proveedor.precioEnvio}</p>
-                <p>Llega en {proveedor.tiempoEntrega} día/s</p>
-            </div>
+                    <div className={styles.divider} />
+                </>
+            ))}
+            <h4 className={styles.info}>Subtotal <span>${proveedor.precioParcial}</span></h4>
+            <h4 className={styles.info}>Envío <span>${proveedor.precioEnvio}</span></h4>
+            <p className={styles.entrega}>Llega en {proveedor.tiempoEntrega} día/s</p>
         </div>
     );
 };

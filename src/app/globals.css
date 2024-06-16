@@ -1,13 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
 :root {
-  --verde-claro: #6D9773;
-  --verde-oscuro: #0C3B2E;
-  --amarillo: #FFBA00;
   --blanco: #FAFAFA;
-  --negro: #121212;
+  --azul-oscuro: #23255D;
+  --lila-medio: #6C5F8D;
+  --lila-oscuro: #4B3F6E;
+  --lila-claro: #BA96C1;
+  --lila-fondo: #BBB6D6;
+  --gris-claro: #DCD7D5;
+  --negro: #1A1A1A;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Quicksand", sans-serif;
+}
+
+.highlight {
+  background: #6c5f8d !important;
+  color: white !important;
+}
+
+.react-calendar__tile--active:enabled:hover,
+.react-calendar__tile--active:enabled:focus {
+  background: var(--lila-claro) !important;
+  color: var(--blanco) !important;
+}
+
+.react-calendar__tile--now {
+  background-color: var(--gris-claro) !important;
+}
+
+.react-calendar__month-view__days__day--weekend {
+  color: var(--lila-oscuro) !important;
 }

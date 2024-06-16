@@ -1,76 +1,56 @@
 .card {
-    width: 40%;
-    max-width: 25rem;
-    min-height: 6rem;
+    width: 80%;
     margin: 2rem;
-    padding: 2rem;
-    padding-top: 4rem;
-    position: relative;
+    margin-top: 3rem;
 
-    background-color: var(--verde-claro);
-    border-radius: 1rem;
-    box-shadow: 1px 6px 14px 0px var(--negro);
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-
-    .nombre {
-        position: absolute;
-        top: -2rem;
-        width: 65%;
-        padding: 1rem .3rem;
-
-        background-color: var(--amarillo);
-        border-radius: 1rem;
-        box-shadow: 1px 6px 14px 0px var(--negro);
-
-        text-align: center;
-        color: var(--verde-oscuro);
-        font-size: 1.4rem;
+    .name {
+        color: var(--azul-oscuro);
+        margin-bottom: 2rem;
     }
 
-    .precioParcial{
-        margin-top: 1.2rem;
-        
-    }
-
-    .divider{
-        border-top: 1px solid var(--amarillo);
-        margin: 20px 0;
-    }
-
-    .detalle {
+    .material {
         width: 100%;
-
         display: flex;
-        flex-direction: column;
+
+        justify-content: space-between;
         align-items: center;
 
-        h2 {
-            color: var(--verde-oscuro);
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
+        font-weight: 700;
+
+        .cant {
+            width: 20%;
         }
 
-        .item {
-            width: 100%;
-            margin: .5rem;
-            display: flex;
-            justify-content: space-between;
-            color: var(--verde-oscuro);
+        .nomb{
+            width: 30%;
+            text-align: left;
+        }
+
+        .precio {
+            width: 30%;
+        }
+
+    }
+    
+    .divider {
+        width: 100%;
+        height: 1px;
+        margin: .7rem 0;
+        background-color: var(--lila-medio);
+    }
+
+    .info {
+        font-size: 1.4rem;
+        margin-top: 1rem;
+
+        span {
+            color: var(--lila-medio);
+            margin-left: 1rem;
         }
     }
 
-    .envio {
-        width: 100%;
-        margin-top: 2rem;
-        justify-self: flex-end;
-
-        p {
-            color: var(--blanco);
-            font-size: 1.2rem;
-        }
+    .entrega {
+        margin-top: .4rem;
+        font-weight: 700;
     }
 }

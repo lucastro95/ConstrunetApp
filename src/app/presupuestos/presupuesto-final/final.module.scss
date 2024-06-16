@@ -1,37 +1,51 @@
 .main {
     width: 100%;
     min-height: 100vh;
-    padding: 5rem 10rem;
-    background-color: var(--verde-oscuro);
-    justify-content: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    padding: 3rem;
 
-    .title {
-        color: var(--blanco);
-        margin-bottom: 3rem;
-    }
+    background-color: var(--lila-fondo);
 
-    .principal {
-        padding: 2rem;
+    .layout {
         width: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
+        min-height: 90vh;
+        padding: 5rem;
 
-        .checkcontainer {
-            width: 30%;
+        background-color: var(--blanco);
+        border-radius: 3rem;
+
+        .main_info {
+            width: 100%;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .chart {
+                width: 50%;
+            }
+
+            .precio_final {
+                width: 50%;
+                display: flex;
+                flex-direction: column;
+
+                justify-content: center;
+                align-items: center;
+
+                h2 {
+                    color: var(--azul-oscuro);
+                    font-size: 3rem;
+                    margin-bottom: 1rem;
+                }
+
+                p {
+                    color: var(--lila-medio);
+                    font-size: 1.5rem;
+                    font-weight: 700;
+                }
+            }
         }
     }
 
-    .proveedores {
-        width: 100%;
-        margin-top: 6rem;
 
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-    }
 }

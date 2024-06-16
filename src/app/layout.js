@@ -15,7 +15,6 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <ReduxProvider>
-          <HomeButton text="Volver a presupuestos" href="/" />
           {children}
         </ReduxProvider>
       </body>
