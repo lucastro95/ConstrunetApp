@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux'
 import PieChart from '../../../ui/presupuesto-final/PieChart.jsx'
 import Calendario from '../../../ui/presupuesto-final/Calendario.jsx'
 import CardProveedor from '../../../ui/presupuesto-final/CardProveedor.jsx'
+import Button from '../../../ui/common/Button';
 
 const page = () => {
   const selections = useSelector((state) => state.selecciones);
@@ -75,6 +76,10 @@ const page = () => {
           <CardProveedor proveedor={prov} />
         )
         )}
+        <div className={styles.buttons}>
+          <Button text='CONFIRMAR PRESUPUESTO' action={() => {}}/>
+          <Button text='REGENERAR PRESUPUESTO' action={() => {}}/>
+        </div>
       </div>
     </main>
   )
