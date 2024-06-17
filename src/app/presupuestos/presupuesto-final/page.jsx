@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect } from 'react';
+import React from 'react';
 import styles from './final.module.scss';
 import { useSelector } from 'react-redux';
 import PieChart from '../../../ui/presupuesto-final/PieChart.jsx';
@@ -12,10 +12,7 @@ import Loader from '../../../ui/common/Loader';
 const Page = () => {
   const router = useRouter();
 
-  const selections = useSelector((state) => state.selecciones);
   const presupuesto = useSelector((state) => state.presupuesto);
-
-  const loading = false; // Aquí puedes manejar la carga si es necesario
 
   const handleRegenerarPresupuesto = () => {
     router.push("/presupuestos");
