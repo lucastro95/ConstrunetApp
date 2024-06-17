@@ -1,24 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
+import { IoIosArrowUp } from "react-icons/io";
 import styles from "./cardproveedor.module.scss";
 
 const CardProveedor = ({ proveedor }) => {
-    console.log(proveedor);
+    const [active, setActive] = useState(false);
+
+    const handleClick = () => {
+        setActive(!active);
+    };
+
     return (
-        <div className={styles.card}>
-            <h3 className={styles.name}>{proveedor.NombreProveedor}</h3>
-            {proveedor.materiales.map(material => (
-                <>
-                    <div className={styles.material}>
-                        <p className={styles.cant}>{material.cantidad}u.</p>
-                        <p className={styles.nomb}>{material.nombre} {material.marca}</p>
-                        <p className={styles.precio}>${material.precio}</p>
-                    </div>
-                    <div className={styles.divider} />
-                </>
-            ))}
-            <h4 className={styles.info}>Subtotal <span>${proveedor.precioParcial}</span></h4>
-            <h4 className={styles.info}>Envío <span>${proveedor.precioEnvio}</span></h4>
-            <p className={styles.entrega}>Llega en {proveedor.tiempoEntrega} día/s</p>
+        <div className={`${styles.card} ${active ? styles.active : ""}`}>
+            <div className={styles.title}>
+                <h3 className={styles.name}>{proveedor.NombreProveedor}</h3>
+                <button className={styles.btn} onClick={handleClick}>
+                    <IoIosArrowUp className={`${styles.icon} ${active ? styles.rotated : ""}`} size={20} />
+                </button>
+            </div>
+            <div className={styles.content}>
+                {proveedor.materiales.map((material, index) => (
+                    <React.Fragment key={index}>
+                        <div className={styles.material}>
+                            <p className={styles.cant}>{material.cantidad}u.</p>
+                            <p className={styles.nomb}>{material.nombre} {material.marca}</p>
+                            <p className={styles.precio}>${material.precio}</p>
+                        </div>
+                        <div className={styles.divider} />
+                    </React.Fragment>
+                ))}
+                <h4 className={styles.info}>Subtotal <span>${proveedor.precioParcial || proveedor.precioTotal}</span></h4>
+                <h4 className={styles.info}>Envío <span>${proveedor.precioEnvio}</span></h4>
+                <p className={styles.entrega}>Llega en {proveedor.tiempoEntrega} día/s</p>
+            </div>
         </div>
     );
 };

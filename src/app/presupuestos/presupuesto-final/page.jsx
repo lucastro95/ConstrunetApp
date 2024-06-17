@@ -1,43 +1,32 @@
-"use client";
-import React, { useEffect } from 'react'
-import styles from './final.module.scss'
-import { useSelector } from 'react-redux'
-import PieChart from '../../../ui/presupuesto-final/PieChart.jsx'
-import Calendario from '../../../ui/presupuesto-final/Calendario.jsx'
-import CardProveedor from '../../../ui/presupuesto-final/CardProveedor.jsx'
+"use client"
+import React, { useEffect } from 'react';
+import styles from './final.module.scss';
+import { useSelector } from 'react-redux';
+import PieChart from '../../../ui/presupuesto-final/PieChart.jsx';
+import Calendario from '../../../ui/presupuesto-final/Calendario.jsx';
+import CardProveedor from '../../../ui/presupuesto-final/CardProveedor.jsx';
 import Button from '../../../ui/common/Button';
+import { useRouter } from 'next/navigation';
+import Loader from '../../../ui/common/Loader';
 
-const page = () => {
+const Page = () => {
+  const router = useRouter();
+
   const selections = useSelector((state) => state.selecciones);
-  // const presupuesto = useSelector((state) => state.presupuesto);
+  const presupuesto = useSelector((state) => state.presupuesto);
 
-  const presupuesto = {
-    "precioFinal": 347000,
-    "presupuestos": [
-      {
-        "NombreProveedor": "RODO Materiales",
-        "materiales": [
-          { "nombre": "Cal Hidralit", "cantidad": 12, "precio": 62000, "marca": "Genérica" },
-          { "nombre": "Cerecita", "cantidad": 10, "precio": 20000, "marca": "Hidralit" },
-          { "nombre": "Piedra", "cantidad": 1, "precio": 45000, "marca": "Hidralit" }
-        ],
-        "precioEnvio": 3400,
-        "precioParcial": 127000,
-        "tiempoEntrega": "2"
-      },
-      {
-        "NombreProveedor": "Materiales La Esperanza",
-        "materiales": [
-          { "nombre": "Cemento", "cantidad": 12, "precio": 72000, "marca": "Avellaneda" },
-          { "nombre": "Ladrillos huecos", "cantidad": 500, "precio": 123000, "marca": "" },
-          { "nombre": "Arena", "cantidad": 1, "precio": 25000, "marca": "" }
-        ],
-        "precioEnvio": 3400,
-        "precioParcial": 220000,
-        "tiempoEntrega": "4"
-      }
-    ]
+  const loading = false; // Aquí puedes manejar la carga si es necesario
+
+  const handleRegenerarPresupuesto = () => {
+    router.push("/presupuestos");
   };
+
+  if (!presupuesto.data.presupuestos) {
+    return <Loader />; // Muestra un loader mientras los datos están cargando
+  }
+
+  const labels = presupuesto.data.presupuestos.map(p => p.NombreProveedor);
+  const data = presupuesto.data.presupuestos.map(p => p.precioParcial);
 
   const colors = [
     '#23255D',
@@ -48,14 +37,6 @@ const page = () => {
     '#DCD7D5',
   ];
 
-  const labels = presupuesto.presupuestos.map(p => p.NombreProveedor);
-  const data = presupuesto.presupuestos.map(p => p.precioParcial);
-
-  // useEffect(() => {
-  //   console.log('Selections:', selections);
-  //   console.log('Presupuesto:', presupuesto);
-  // }, [selections, presupuesto]);
-
   return (
     <main className={styles.main}>
       <div className={styles.layout}>
@@ -65,24 +46,23 @@ const page = () => {
             <PieChart labels={labels} data={data} colors={colors} />
           </div>
           <div className={styles.precio_final}>
-            <h2>${presupuesto.precioFinal}</h2>
+            <h2>${presupuesto.data.precioFinal}</h2>
             <p>Precio Final</p>
           </div>
         </div>
         <h2>Tiempos de entrega</h2>
-        <Calendario presupuestos={presupuesto.presupuestos} />
+        <Calendario presupuestos={presupuesto.data.presupuestos} />
         <h2>Resumen</h2>
-        {presupuesto.presupuestos.map(prov => (
-          <CardProveedor proveedor={prov} />
-        )
-        )}
+        {presupuesto.data.presupuestos.map(prov => (
+          <CardProveedor key={prov.NombreProveedor} proveedor={prov} />
+        ))}
         <div className={styles.buttons}>
+          <Button text='REGENERAR PRESUPUESTO' action={handleRegenerarPresupuesto}/>
           <Button text='CONFIRMAR PRESUPUESTO' action={() => {}}/>
-          <Button text='REGENERAR PRESUPUESTO' action={() => {}}/>
         </div>
       </div>
     </main>
-  )
-}
+  );
+};
 
-export default page
+export default Page;

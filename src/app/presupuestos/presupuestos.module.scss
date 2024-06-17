@@ -1,37 +1,29 @@
 .main {
     width: 100%;
     min-height: 100vh;
-    padding: 7rem 10rem;
-    background-color: var(--verde-oscuro);
+    padding: 3rem;
+    background-color: var(--lila-fondo);
 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
 
-    .title {
-        color: var(--blanco);
-    }
-
-    .container {
+    .layout {
         width: 100%;
-        height: 50vh;
-        display: flex;
-        flex-wrap: row wrap;
-        justify-content: center;
-        align-items: center;
-        gap: 2rem;
-    }
+        min-height: 90vh;
+        padding: 5rem;
 
-    // en pantalla chica .container
-    @media (max-width: 768px) {
-        .container {
-            height: 100vh;
-            flex-direction: column;
+        background-color: var(--blanco);
+        border-radius: 3rem;
+
+        .botones {
+            width: 50%;
+            margin: auto;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
     }
-
-    
-
-
 }
