@@ -1,0 +1,69 @@
+.card {
+    width: 100%;
+    height: 2rem;
+    margin: 2rem;
+    margin-top: 3rem;
+    overflow: hidden;
+    transition: height 0.3s ease;
+
+    &.active {
+        height: auto;
+    }
+
+    .title {
+        width: 100%;
+        margin-bottom: 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .name {
+            color: var(--azul-oscuro);
+        }
+
+        .btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        .icon {
+            transition: transform 0.3s ease;
+        }
+
+        .rotated {
+            transform: rotate(180deg);
+        }
+    }
+
+    .material {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: 700;
+
+        .cant {
+            width: 20%;
+        }
+
+        .nomb {
+            width: 30%;
+            text-align: left;
+        }
+    }
+
+    .divider {
+        width: 100%;
+        height: 1px;
+        margin: .7rem 0;
+        background-color: var(--lila-medio);
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+    }
+}

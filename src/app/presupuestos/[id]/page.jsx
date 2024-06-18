@@ -1,20 +1,23 @@
 "use client";
 import React, { useEffect, useState } from 'react'
 import styles from './presupuestos.module.scss'
-import Button from '../../ui/common/Button';
-import getPresupuestosConfir from '../../actions/getPresupuestosConfir';
-import CardProveedor from '../../ui/presupuesto-final/CardProveedor';
-import Loader from '../../ui/common/Loader.jsx'
-import ModalPresupuesto from '../../ui/presupuestos/modal/ModalPresupuesto'
+import Button from '../../../ui/common/Button';
+import getPresupuestosConfir from '../../../actions/getPresupuestosConfir';
+import CardProveedor from '../../../ui/presupuesto-final/CardProveedor';
+import Loader from '../../../ui/common/Loader.jsx'
+import ModalPresupuesto from '../../../ui/presupuestos/modal/ModalPresupuesto'
 import { useRouter } from 'next/navigation';
 
 
-const page = () => {
+const page = ({ params }) => {
   const router = useRouter();
 
   const [presupuestos, setPresupuestos] = useState([]);
   const [loading, setLoading] = useState(false);
   const [modal, setModal] = useState(false)
+
+  const { id } = params
+  console.log(id);
 
   const handleGeneratePresupuesto = () => {
     setModal(true);
@@ -32,7 +35,7 @@ const page = () => {
     const fetchData = async () => {
       try {
         setLoading(true)
-        const presupuestos = await getPresupuestosConfir();
+        const presupuestos = await getPresupuestosConfir(id);
         setPresupuestos(presupuestos);
       } catch (error) {
         console.log(error);
@@ -51,7 +54,7 @@ const page = () => {
           <Loader />
           :
           <>
-            {modal && <ModalPresupuesto handleClose={handleCloseModal} />}
+            {modal && <ModalPresupuesto id={id} handleClose={handleCloseModal} />}
             <main className={styles.main}>
               <div className={styles.layout}>
                 <h2>Presupuestos del Proyecto "Casa en Quilmes"</h2>

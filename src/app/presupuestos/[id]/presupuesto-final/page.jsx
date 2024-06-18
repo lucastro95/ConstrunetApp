@@ -2,12 +2,12 @@
 import React from 'react';
 import styles from './final.module.scss';
 import { useSelector } from 'react-redux';
-import PieChart from '../../../ui/presupuesto-final/PieChart.jsx';
-import Calendario from '../../../ui/presupuesto-final/Calendario.jsx';
-import CardProveedor from '../../../ui/presupuesto-final/CardProveedor.jsx';
-import Button from '../../../ui/common/Button';
+import PieChart from '../../../../ui/presupuesto-final/PieChart.jsx';
+import Calendario from '../../../../ui/presupuesto-final/Calendario.jsx';
+import CardProveedor from '../../../../ui/presupuesto-final/CardProveedor.jsx';
+import Button from '../../../../ui/common/Button.jsx';
 import { useRouter } from 'next/navigation';
-import Loader from '../../../ui/common/Loader';
+import Loader from '../../../../ui/common/Loader.jsx';
 
 const Page = () => {
   const router = useRouter();

@@ -10,7 +10,7 @@ import Button from '../../common/Button';
 import { IoMdCloseCircleOutline } from "react-icons/io";
 
 
-const ModalPresupuesto = ({ handleClose }) => {
+const ModalPresupuesto = ({ id, handleClose }) => {
     const router = useRouter();
     const dispatch = useDispatch();
     
@@ -23,10 +23,10 @@ const ModalPresupuesto = ({ handleClose }) => {
 
     const handleGeneratePresupuesto = async () => {
         try {
-            const response = await getPresupuestoOptimo(selections);
+            const response = await getPresupuestoOptimo(selections, id);
             dispatch(setPresupuesto(response));
             dispatch(setSelecciones(selections));
-            router.push("/presupuestos/presupuesto-final");
+            router.push(`/presupuestos/${id}/presupuesto-final`);
         } catch (error) {
             console.log(error);
         }

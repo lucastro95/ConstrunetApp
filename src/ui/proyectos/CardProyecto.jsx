@@ -8,19 +8,14 @@ const CardProyecto = ({ nombre }) => {
   const router = useRouter();
 
   const handleVerPresupuestos = () => {
-    router.push("/presupuestos");
-  }
-
-  const handleCrearLista = () => {
-    router.push("/agregar-lista");
+    router.push("/listas-materiales");
   }
   
   return (
     <div className={styles.card}>
       <FaPencilRuler style={{ color: "var(--lila-oscuro)", fontSize: "4rem" }} />
       <h3 className={styles.name}>{nombre}</h3>
-      <button className={styles.btn} onClick={handleVerPresupuestos}>Ver Presupuestos</button>
-      <button className={styles.btn} onClick={handleCrearLista}>Crear Lista</button>
+      <button className={styles.btn} onClick={handleVerPresupuestos}>Ver Listas</button>
     </div>
   )
 }
