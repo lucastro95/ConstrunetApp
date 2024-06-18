@@ -149,6 +149,7 @@
   min-height: 40rem;
   overflow-y: auto;
   position: relative;
+  z-index: 9;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none;  /* Internet Explorer 10+ */
 }
