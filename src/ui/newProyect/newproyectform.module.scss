@@ -1,151 +1,78 @@
-/* styles/AddMaterials.module.scss */
+/* styles/CreateProject.module.scss */
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #DCD7D5;
-    padding: 2rem;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color:#BBB6D6 ; /* Background color from the provided palette */
+}
+
+.card {
+  background: #fff;
+  padding: 3rem; /* Increased padding */
+  border-radius: 16px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  max-width: 800px; /* Increased max-width */
+  width: 100%;
+  background-color: #F7F8FC;
+}
+.buttoncontainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.header {
+  font-size: 2rem; /* Increased font size */
+  margin-bottom: 2rem;
+  color: #23255D; /* Darkest color from the palette */
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
   
-  .card {
-    background: #fff;
-    padding: 2rem;
-    border-radius: 16px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    max-width: 1200px;
-    width: 100%;
-  }
-  
-  .header {
-    font-size: 2rem;
-    margin-bottom: 2rem;
-    color: #23255D;
-    text-align: center;
-  }
-  
-  .filters {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 2rem;
-  }
-  
-  .filter-group {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .label {
-    margin-bottom: 0.5rem;
-    color: #4B3F6E;
-  }
-  
-  .input,
-  .select {
-    padding: 0.75rem;
-    border: 1px solid #BBB6D6;
-    border-radius: 8px;
-    font-size: 1rem;
-    background-color: #fff;
-    color: #23255D;
-    width: 200px;
-    margin-bottom: 1rem;
-  }
-  
-  .materials-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-  }
-  
-  .material-card {
-    background: #fff;
-    border: 1px solid #BBB6D6;
-    border-radius: 8px;
-    padding: 1rem;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .material-card h3 {
-    color: #23255D;
-    margin-bottom: 1rem;
-  }
-  
-  .material-card p {
-    color: #4B3F6E;
-    margin-bottom: 1rem;
-  }
-  
-  .button {
-    background-color: #6C5F8D;
-    color: #fff;
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s;
-  }
-  
-  .button:hover {
-    background-color: #4B3F6E;
-  }
-  
-  .selected-materials {
-    background: #fff;
-    padding: 1rem;
-    border-radius: 16px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-bottom: 2rem;
-    width: 100%;
-  }
-  
-  .selected-materials h2 {
-    color: #23255D;
-    margin-bottom: 1rem;
-  }
-  
-  .selected-material {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    border-bottom: 1px solid #BBB6D6;
-  }
-  
-  .selected-material:last-child {
-    border-bottom: none;
-  }
-  
-  .selected-material p {
-    color: #4B3F6E;
-    margin: 0;
-  }
-  
-  .quantity-input {
-    width: 50px;
-    padding: 0.5rem;
-    border: 1px solid #BBB6D6;
-    border-radius: 8px;
-    text-align: center;
-  }
-  
-  .continue-button {
-    background-color: #6C5F8D;
-    color: #fff;
-    padding: 1rem 2rem;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 1.25rem;
-    transition: background-color 0.3s;
-    width: 100%;
-    text-align: center;
-    margin-top: 2rem;
-  }
-  
-  .continue-button:hover {
-    background-color: #4B3F6E;
-  }
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 1.35rem; /* Increased font size */
+  color: #4B3F6E; /* Darker color from the palette */
+}
+
+.input,
+.textarea {
+  width: 100%;
+  padding: 1rem; /* Increased padding */
+  border: 1px solid #BBB6D6; /* Light border color from the palette */
+  border-radius: 8px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  font-size: 1rem;
+  background-color: #fff;
+  color: #23255D;
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 150px; /* Increased minimum height */
+}
+
+.button {
+  background-color: #6C5F8D; /* Primary button color from the palette */
+  color: #fff;
+  padding: 1rem 2rem; /* Increased padding */
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.25rem; /* Increased font size */
+  transition: background-color 0.3s;
+  width: 50%;
+  text-align: center;
+}
+
+.button:hover {
+  background-color: #4B3F6E; /* Darker hover color */
+}
