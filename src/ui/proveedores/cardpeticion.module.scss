@@ -1,0 +1,67 @@
+.card {
+    width: 30%;
+    height: 2rem;
+    margin: 2rem;
+    margin-top: 3rem;
+    overflow: hidden;
+    transition: height 0.3s ease;
+
+    &.active {
+        height: auto;
+    }
+
+    .materiales {
+        margin-left: 3rem;
+
+        h3 {
+            font-size: 1rem;
+            margin-bottom: .7rem;
+        }
+        
+        .material {
+            margin-bottom: .5rem ;
+        }
+    }
+}
+
+.check {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-width: 5rem;
+    margin-bottom: 1rem;
+
+    .box {
+        width: 2rem;
+        height: 2rem;
+        margin-right: 1rem;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    
+        border: var(--lila-medio) 2px solid;
+        cursor: pointer;
+    }
+
+    .text {
+        color: var(--negro);
+        margin-right: 5rem;
+        font-weight: 700;
+        font-size: 1.3rem;
+    }
+
+    .btn {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+    }
+
+    .icon {
+        transition: transform 0.3s ease;
+    }
+
+    .rotated {
+        transform: rotate(180deg);
+    }
+}
