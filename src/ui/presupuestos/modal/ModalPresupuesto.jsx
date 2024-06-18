@@ -13,6 +13,7 @@ import { IoMdCloseCircleOutline } from "react-icons/io";
 const ModalPresupuesto = ({ handleClose }) => {
     const router = useRouter();
     const dispatch = useDispatch();
+    
     const [selections, setSelections] = useState({
         tiempoEntrega: false,
         menorPrecio: false,

@@ -1,0 +1,31 @@
+.main {
+    width: 100%;
+    min-height: 100vh;
+    padding: 3rem;
+    padding-top: 8rem;
+    background-color: var(--lila-fondo);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    .layout {
+        width: 100%;
+        min-height: 90vh;
+        padding: 5rem;
+
+        background-color: var(--blanco);
+        border-radius: 3rem;
+
+        .proyectos {
+            width: 80%;
+            margin: auto;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+    }
+}
