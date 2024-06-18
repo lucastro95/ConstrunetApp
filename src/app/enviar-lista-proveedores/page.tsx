@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState, AppDispatch } from '../../redux/Store';
 import styles from './enviarlista-prov.module.scss';
 import getProveedores from '../../actions/getProveedores';
+import postEnvioListaProvee from '../../actions/postEnvioListaProvee';
 import { FaSort, FaSearch, FaCheck, FaTrashAlt } from "react-icons/fa";
 
 const Providers: React.FC = () => {
@@ -53,25 +54,19 @@ const Providers: React.FC = () => {
     }));
 
     const requestBody = {
-      listado: materialsList,
+      materiales: materialsList,
       proveedores: providersCUIT,
     };
 
     try {
-      const response = await fetch('/api/sendMaterials', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(requestBody),
-      });
+      const response = await postEnvioListaProvee(requestBody);
 
-      if (!response.ok) {
-        throw new Error('Error en la solicitud');
-      }
+      // if (!response.ok) {
+      //   throw new Error('Error en la solicitud');
+      // 
 
-      const result = await response.json();
-      console.log('Respuesta del servidor:', result);
+      // const response = await response.json();
+      console.log('Respuesta del servidor:', response);
     } catch (error) {
       console.error('Error al enviar la solicitud:', error);
     }
