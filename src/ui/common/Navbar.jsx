@@ -11,7 +11,9 @@ const Navbar = () => {
             className={styles.logo}
         />
         <ul className={styles.items}>
-            <li className={styles.item}>Mis Proyectos</li>
+            <li className={styles.item}>
+              <a href="/proyectos">Mis Proyectos</a>
+            </li>
             <li className={styles.item}>Proveedores</li>
         </ul>
     </nav>

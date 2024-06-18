@@ -1,18 +1,16 @@
 "use client";
 import React, { useEffect, useState } from 'react'
 import styles from './presupuestos.module.scss'
-import { useRouter } from 'next/navigation';
 import Button from '../../ui/common/Button';
-import { useDispatch, useSelector } from 'react-redux';
 import getPresupuestosConfir from '../../actions/getPresupuestosConfir';
 import CardProveedor from '../../ui/presupuesto-final/CardProveedor';
 import Loader from '../../ui/common/Loader.jsx'
 import ModalPresupuesto from '../../ui/presupuestos/modal/ModalPresupuesto'
+import { useRouter } from 'next/navigation';
 
 
 const page = () => {
   const router = useRouter();
-  const dispatch = useDispatch();
 
   const [presupuestos, setPresupuestos] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -21,6 +19,10 @@ const page = () => {
   const handleGeneratePresupuesto = () => {
     setModal(true);
   };
+
+  const handleAtras = () => {
+    router.push("/proyectos");
+  }
 
   const handleCloseModal = () => {
     setModal(false);
@@ -52,14 +54,14 @@ const page = () => {
             {modal && <ModalPresupuesto handleClose={handleCloseModal} />}
             <main className={styles.main}>
               <div className={styles.layout}>
-                <h2>Presupuestos del Proyecto "Casa en Los Andes"</h2>
+                <h2>Presupuestos del Proyecto "Casa en Quilmes"</h2>
                 {
                   presupuestos.map(pres => (
                     <CardProveedor proveedor={pres} />
                   ))
                 }
                 <div className={styles.botones}>
-                  <Button text={'ATRAS'} action={() => { }} />
+                  <Button text={'ATRAS'} action={handleAtras} />
                   <Button text={'GENERAR PRESUPUESTO'} action={handleGeneratePresupuesto} />
                 </div>
               </div>
