@@ -6,15 +6,20 @@ import styles from './enviarlista-prov.module.scss';
 import getProveedores from '../../actions/getProveedores';
 import postEnvioListaProvee from '../../actions/postEnvioListaProvee';
 import { FaSort, FaSearch, FaCheck, FaTrashAlt } from "react-icons/fa";
+import ListacreadayenviadaModal from './ListacreadayenviadaModal';
+import { useRouter } from 'next/navigation';
 
 const Providers: React.FC = () => {
   const [selectedProviders, setSelectedProviders] = useState<string[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [sortByRating, setSortByRating] = useState<'asc' | 'desc'>('desc');
   const [providers, setProviders] = useState<any[]>([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
 
   const selectedMaterials = useSelector((state: RootState) => state.materials.selectedMaterials);
   const dispatch = useDispatch<AppDispatch>();
+  const router = useRouter();
 
   useEffect(() => {
     const fetchProviders = async () => {
@@ -54,22 +59,22 @@ const Providers: React.FC = () => {
     }));
 
     const requestBody = {
-      materiales: materialsList,
+      listado: materialsList,
       proveedores: providersCUIT,
     };
 
     try {
       const response = await postEnvioListaProvee(requestBody);
-
-      // if (!response.ok) {
-      //   throw new Error('Error en la solicitud');
-      // 
-
-      // const response = await response.json();
-      console.log('Respuesta del servidor:', response);
+        setModalMessage('La lista se ha enviado exitosamente.');
+        setIsModalOpen(true);
     } catch (error) {
       console.error('Error al enviar la solicitud:', error);
     }
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    router.push('/');
   };
 
   return (
@@ -135,6 +140,7 @@ const Providers: React.FC = () => {
           Enviar Lista a Proveedores
         </button>
       </div>
+      <ListacreadayenviadaModal isOpen={isModalOpen} onClose={handleCloseModal} message={modalMessage} />
     </div>
   );
 };
