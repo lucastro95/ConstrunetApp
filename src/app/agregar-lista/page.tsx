@@ -1,9 +1,11 @@
 "use client";
-// pages/add-materials.tsx
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../redux/Store";
+import { addMaterial, updateQuantity } from "../../redux/slices/MaterialsSlice.js";
 import styles from "./AddMaterials.module.scss";
-import { FaBoxOpen } from "react-icons/fa";
-import { FaPlus } from "react-icons/fa";
+import { FaBoxOpen, FaPlus } from "react-icons/fa";
+import { useRouter } from "next/navigation";
 
 const materialsDummyData = [
     { id: 1, name: "Cemento", category: "Construcción" },
@@ -17,9 +19,9 @@ const materialsDummyData = [
 const AddMaterials: React.FC = () => {
     const [selectedCategory, setSelectedCategory] = useState("");
     const [searchTerm, setSearchTerm] = useState("");
-    const [selectedMaterials, setSelectedMaterials] = useState<
-        { id: number; name: string; quantity: number }[]
-    >([]);
+
+    const dispatch = useDispatch();
+    const selectedMaterials = useSelector((state: RootState) => state.materials.selectedMaterials);
 
     const filteredMaterials = materialsDummyData.filter((material) => {
         return (
@@ -30,31 +32,19 @@ const AddMaterials: React.FC = () => {
         );
     });
 
-    const addMaterial = (material: { id: number; name: string }) => {
-        const existingMaterial = selectedMaterials.find(
-            (m) => m.id === material.id
-        );
-        if (existingMaterial) {
-            setSelectedMaterials(
-                selectedMaterials.map((m) =>
-                    m.id === material.id
-                        ? { ...m, quantity: m.quantity + 1 }
-                        : m
-                )
-            );
-        } else {
-            setSelectedMaterials([
-                ...selectedMaterials,
-                { ...material, quantity: 1 },
-            ]);
-        }
+    const handleAddMaterial = (material: { id: number; name: string; category: string }) => {
+        dispatch(addMaterial(material));
     };
 
-    const updateQuantity = (id: number, quantity: number) => {
-        setSelectedMaterials(
-            selectedMaterials.map((m) => (m.id === id ? { ...m, quantity } : m))
-        );
+    const handleUpdateQuantity = (id: number, quantity: number) => {
+        dispatch(updateQuantity({ id, quantity }));
     };
+
+    const router= useRouter();
+
+    const handleAddLista= ()=>{
+        router.push("/enviar-lista-proveedores")
+    }
 
     return (
         <div className={styles.container}>
@@ -113,13 +103,13 @@ const AddMaterials: React.FC = () => {
                                 </div>
                                 <button
                                     className={styles.button}
-                                    onClick={() => addMaterial(material)}>
-                                    <FaPlus></FaPlus>
+                                    onClick={() => handleAddMaterial(material)}>
+                                    <FaPlus />
                                 </button>
                             </div>
                         ))}
                     </div>
-                    <button className={styles["continue-button"]}>
+                    <button onClick={handleAddLista} className={styles["continue-button"]}>
                         Continuar para Escoger Proveedores
                     </button>
                 </div>
@@ -145,7 +135,7 @@ const AddMaterials: React.FC = () => {
                                         value={material.quantity}
                                         min="1"
                                         onChange={(e) =>
-                                            updateQuantity(
+                                            handleUpdateQuantity(
                                                 material.id,
                                                 parseInt(e.target.value, 10)
                                             )

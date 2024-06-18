@@ -27,7 +27,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "src/redux/slices/MaterialsSlice.js", "src/redux/Store.ts"  ],
   "exclude": [
     "node_modules"
   ]
