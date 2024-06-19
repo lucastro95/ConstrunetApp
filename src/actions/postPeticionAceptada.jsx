@@ -1,15 +1,14 @@
 "use server"
-export default async function getPresupuestoOptimo(filters, id) {
-
-    console.log(filters.menorPrecio);
+export default async function postPeticionAceptada(peticion) {
 
     try {
-        const response =  await fetch(`http://localhost:8080/presupuestos/opti?menorPrecio=${filters.menorPrecio}&tiempoEntrega=${filters.tiempoEntrega}&lista=${id}`, {
-            method: "GET",
+        const response =  await fetch(`http://localhost:8080/proveedores/20345678901/presupuesto`, {
+            method: "POST",
             cache: "no-store",
             headers: {
                 "Content-Type": "application/json", // Specify the content type
             },
+            body: JSON.stringify(peticion), // JSON.stringify the data
         });
 
         // console.log("Full Response:", response); 

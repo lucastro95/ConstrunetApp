@@ -1,67 +1,101 @@
 .card {
-    width: 30%;
-    height: 2rem;
+    width: 20%;
+    height: 7rem;
     margin: 2rem;
     margin-top: 3rem;
     overflow: hidden;
     transition: height 0.3s ease;
-
+  
     &.active {
-        height: auto;
+      height: auto;
     }
-
+  
+    .icon {
+      font-size: 4rem;
+      margin: auto;
+      margin-bottom: 1rem;
+      color: var(--lila-medio);
+      display: block; // Asegúrate de que el icono se muestre como bloque
+    }
+  
     .materiales {
-        margin-left: 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  
+      h3 {
+        font-size: 1rem;
+        margin-bottom: 0.7rem;
+      }
+  
+      .material {
+        margin-bottom: 0.5rem;
+      }
 
-        h3 {
-            font-size: 1rem;
-            margin-bottom: .7rem;
-        }
-        
-        .material {
-            margin-bottom: .5rem ;
+      .botones {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        .btn {
+            padding: .5rem 1rem;
+            margin: .5rem 0;
+            border: none;
+            border-radius: 2rem;
+            background-color: var(--azul-oscuro);
+            color: var(--blanco);
+            font-size: .8rem;
+    
+            cursor: pointer;
+    
+            &:hover {
+                box-shadow: 1px 4px 10px 0px var(--azul-oscuro);
+            }
         }
     }
-}
-
-.check {
+    }
+  }
+  
+  .check {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     width: 100%;
     min-width: 5rem;
     margin-bottom: 1rem;
-
+  
     .box {
-        width: 2rem;
-        height: 2rem;
-        margin-right: 1rem;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    
-        border: var(--lila-medio) 2px solid;
-        cursor: pointer;
+      width: 2rem;
+      height: 2rem;
+      margin-right: 1rem;
+  
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  
+      border: var(--lila-medio) 2px solid;
+      cursor: pointer;
     }
-
+  
     .text {
-        color: var(--negro);
-        margin-right: 5rem;
-        font-weight: 700;
-        font-size: 1.3rem;
+      color: var(--negro);
+      font-weight: 700;
+      font-size: 1.3rem;
     }
-
+  
     .btn {
-        background: transparent;
-        border: none;
-        cursor: pointer;
+      background: transparent;
+      border: none;
+      cursor: pointer;
     }
-
-    .icon {
-        transition: transform 0.3s ease;
+  
+    .arrow {
+      transition: transform 0.3s ease;
     }
-
+  
     .rotated {
-        transform: rotate(180deg);
+      transform: rotate(180deg);
     }
-}
+
+
+  }
+  

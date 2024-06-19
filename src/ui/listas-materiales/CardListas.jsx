@@ -13,8 +13,6 @@ const CardProveedor = ({ lista, index }) => {
         setActive(!active);
     };
 
-    console.log(lista._id);
-
     const handleVerPrespuestos = () => {
         router.push(`/presupuestos/${lista._id}`)
     }

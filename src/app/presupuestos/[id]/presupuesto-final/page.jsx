@@ -9,13 +9,15 @@ import Button from '../../../../ui/common/Button.jsx';
 import { useRouter } from 'next/navigation';
 import Loader from '../../../../ui/common/Loader.jsx';
 
-const Page = () => {
+const Page = ({ params }) => {
   const router = useRouter();
+
+  const {id} = params
 
   const presupuesto = useSelector((state) => state.presupuesto);
 
   const handleRegenerarPresupuesto = () => {
-    router.push("/presupuestos");
+    router.push(`/presupuestos/${id}`);
   };
 
   if (!presupuesto.data.presupuestos) {

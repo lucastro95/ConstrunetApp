@@ -4,11 +4,13 @@ import { configureStore } from '@reduxjs/toolkit';
 import presupuestoReducer from './slices/presupuestoSlice.js';
 import selectionsReducer from './slices/selectionsSlice.js';
 import materialsReducer from "./slices/MaterialsSlice.js";
+import proveedorReducer from "./slices/proveedorSlice.js";
 export const store = configureStore({
   reducer: {
     selecciones: selectionsReducer,
     presupuesto: presupuestoReducer,
     materials: materialsReducer,
+    proveedor: proveedorReducer,
   },
 
 

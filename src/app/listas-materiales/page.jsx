@@ -4,8 +4,12 @@ import styles from './listas.module.scss'
 import getListas from '../../actions/getListas'
 import Loader from '../../ui/common/Loader'
 import CardListas from '../../ui/listas-materiales/CardListas'
+import Button from '../../ui/common/Button'
+import { useRouter } from 'next/navigation'
 
 const page = () => {
+  const router = useRouter()
+
     const [listas, setListas] = useState([])
     const [loading, setLoading] = useState(false);
 
@@ -14,7 +18,6 @@ const page = () => {
           try {
             setLoading(true)
             const listas = await getListas();
-            console.log(listas);
             setListas(listas);
           } catch (error) {
             console.log(error);
@@ -25,7 +28,11 @@ const page = () => {
     
         fetchData();
       }, []);
-    
+
+      const handleCrearLista = () => {
+        router.push('/agregar-lista')
+      }  
+
   return (
     <>
     {
@@ -36,11 +43,20 @@ const page = () => {
             <div className={styles.layout}>
                 <h2>Mis Listas del Proyecto "Casa en Quilmes"</h2>
                 {
-                    listas.map((lista, index) => (
-                        <CardListas lista={lista} index={index}/>
-                    ))
+                  listas.length === 0 ?
+                    <h3>No hay listas cargadas</h3>
+                  :
+                  <div className={styles.listas}>
+                    {
+                        listas.map((lista, index) => (
+                            <CardListas lista={lista} index={index}/>
+                        ))
+                    }
+                  </div>
                 }
+                <Button text={'CREAR NUEVA LISTA'} action={handleCrearLista}/>
             </div>
+          
         </main>
     }
     </>

@@ -8,6 +8,7 @@ import postEnvioListaProvee from '../../actions/postEnvioListaProvee';
 import { FaSort, FaSearch, FaCheck, FaTrashAlt } from "react-icons/fa";
 import ListacreadayenviadaModal from './ListacreadayenviadaModal';
 import { useRouter } from 'next/navigation';
+import { setProveedor } from '../../redux/slices/proveedorSlice';
 
 const Providers: React.FC = () => {
   const [selectedProviders, setSelectedProviders] = useState<string[]>([]);
@@ -52,6 +53,7 @@ const Providers: React.FC = () => {
 
   const sendMaterialsToProviders = async () => {
     const providersCUIT = selectedProviders.map(cuit => cuit).filter(cuit => cuit !== null);
+    dispatch(setProveedor(providersCUIT[0]))
 
     const materialsList = selectedMaterials.map(material => ({
       nombre: material.name,
@@ -74,7 +76,7 @@ const Providers: React.FC = () => {
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
-    router.push('/');
+    router.push('/proyectos');
   };
 
   return (

@@ -16,9 +16,7 @@ const ModalPresupuesto = ({ id, handleClose }) => {
     
     const [selections, setSelections] = useState({
         tiempoEntrega: false,
-        menorPrecio: false,
-        reputacion: false,
-        calidadMateriales: false,
+        menorPrecio: false
     });
 
     const handleGeneratePresupuesto = async () => {

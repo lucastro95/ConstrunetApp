@@ -1,10 +1,8 @@
 "use server"
-export default async function getPresupuestoOptimo(filters, id) {
-
-    console.log(filters.menorPrecio);
+export default async function getPeticiones() {
 
     try {
-        const response =  await fetch(`http://localhost:8080/presupuestos/opti?menorPrecio=${filters.menorPrecio}&tiempoEntrega=${filters.tiempoEntrega}&lista=${id}`, {
+        const response =  await fetch(`http://localhost:8080/proveedores/20345678901/pendientes`, {
             method: "GET",
             cache: "no-store",
             headers: {

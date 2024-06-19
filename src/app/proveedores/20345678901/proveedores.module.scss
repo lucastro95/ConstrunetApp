@@ -17,5 +17,16 @@
 
         background-color: var(--blanco);
         border-radius: 3rem;
+
+        .materiales {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        h3 {
+            margin-top: 10rem;
+        }
     }
 }

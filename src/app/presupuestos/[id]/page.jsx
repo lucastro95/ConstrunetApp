@@ -17,7 +17,6 @@ const page = ({ params }) => {
   const [modal, setModal] = useState(false)
 
   const { id } = params
-  console.log(id);
 
   const handleGeneratePresupuesto = () => {
     setModal(true);
