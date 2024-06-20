@@ -8,6 +8,7 @@ import CardProveedor from '../../../../ui/presupuesto-final/CardProveedor.jsx';
 import Button from '../../../../ui/common/Button.jsx';
 import { useRouter } from 'next/navigation';
 import Loader from '../../../../ui/common/Loader.jsx';
+import getProveedores from '../../../../actions/getProveedores';
 
 const Page = ({ params }) => {
   const router = useRouter();
@@ -15,6 +16,8 @@ const Page = ({ params }) => {
   const {id} = params
 
   const presupuesto = useSelector((state) => state.presupuesto);
+
+  console.log(presupuesto);
 
   const handleRegenerarPresupuesto = () => {
     router.push(`/presupuestos/${id}`);
@@ -55,6 +58,17 @@ const Page = ({ params }) => {
         {presupuesto.data.presupuestos.map(prov => (
           <CardProveedor key={prov.NombreProveedor} proveedor={prov} />
         ))}
+        {
+          presupuesto.data.materialesSinProveedor.length !== 0 &&
+          <div className={styles.sinProv}>
+            <h2>Materiales sin proveedor</h2>
+            {
+              presupuesto.data.materialesSinProveedor.map(material => (
+                <p>{material}</p>
+              ))
+            }
+          </div>
+        }
         <div className={styles.buttons}>
           <Button text='REGENERAR PRESUPUESTO' action={handleRegenerarPresupuesto}/>
           <Button text='CONFIRMAR PRESUPUESTO' action={() => {}}/>

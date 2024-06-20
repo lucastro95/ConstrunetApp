@@ -38,10 +38,10 @@ const page = () => {
               <div className={styles.materiales}>
                 {
                   listado.length === 0 ? (
-                    <h3>No hay peticiones</h3>
+                    <h3 className={styles.text}>No hay peticiones</h3>
                   ) : (
                     listado.map((lista, index) => (
-                      <CardPeticion key={index} text={`Petición n° ${index + 1}`} materiales={lista} />
+                      <CardPeticion key={index} text={`Petición n° ${index + 1}`} lista={lista} />
                     ))
                   )
                 }
