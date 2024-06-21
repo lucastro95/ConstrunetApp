@@ -26,6 +26,9 @@ const CardProveedor = ({ lista, index }) => {
                 </button>
             </div>
             <div className={styles.content}>
+                <div className={styles.info}>
+                    <h3 className={styles.estado}>Estado: <span>Presupuesto Confirmado</span></h3>
+                </div>
                 {lista.materiales.map((material, index) => (
                     <React.Fragment key={index}>
                         <div className={styles.material}>
@@ -35,7 +38,7 @@ const CardProveedor = ({ lista, index }) => {
                         <div className={styles.divider} />
                     </React.Fragment>
                 ))}
-                <Button text={'Ver Presupuestos'} action={handleVerPrespuestos}/>
+                <Button text={'Ver Presupuestos'} action={handleVerPrespuestos} />
             </div>
         </div>
     );

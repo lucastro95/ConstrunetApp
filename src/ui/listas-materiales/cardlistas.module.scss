@@ -38,24 +38,37 @@
 
     .content {
         padding: 1rem;
-    }
 
-    .material {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-weight: 700;
+        .info {
+            width: 100%;
+            margin-bottom: 2rem;
 
-        .cant {
-            width: 20%;
+            .estado {
+                span {
+                    color: var(--lila-medio);
+                }
+            }
         }
 
-        .nomb {
-            width: 30%;
-            text-align: left;
+        .material {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+    
+            .cant {
+                width: 20%;
+            }
+    
+            .nomb {
+                width: 30%;
+                text-align: left;
+            }
         }
     }
+
+
 
     .divider {
         width: 100%;

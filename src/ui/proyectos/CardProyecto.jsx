@@ -1,10 +1,11 @@
 "use client"
 import React from 'react'
 import styles from './cardproyecto.module.scss'
-import { FaPencilRuler } from "react-icons/fa";
 import { useRouter } from 'next/navigation';
+import { FaPencilRuler, FaHammer, FaRulerCombined, FaMapPin  } from "react-icons/fa";
+import { GiHandSaw } from "react-icons/gi";
 
-const CardProyecto = ({ nombre }) => {
+const CardProyecto = ({ nombre, icono, ubicacion }) => {
   const router = useRouter();
 
   const handleVerPresupuestos = () => {
@@ -13,8 +14,15 @@ const CardProyecto = ({ nombre }) => {
   
   return (
     <div className={styles.card}>
-      <FaPencilRuler style={{ color: "var(--lila-oscuro)", fontSize: "4rem" }} />
+      {icono === "FaPencilRuler" && <FaPencilRuler className={styles.icon} />}
+      {icono === "FaHammer" && <FaHammer className={styles.icon} />}
+      {icono === "GiHandSaw" && <GiHandSaw className={styles.icon} />}
+      {icono === "FaRulerCombined" && <FaRulerCombined className={styles.icon} />}
       <h3 className={styles.name}>{nombre}</h3>
+      <div className={styles.ubicacion}>
+        <FaMapPin className={styles.pin}/>
+        <p className={styles.text}>{ubicacion}</p>
+      </div>
       <button className={styles.btn} onClick={handleVerPresupuestos}>Ver Listas</button>
     </div>
   )

@@ -1,0 +1,21 @@
+.filterName {
+    display: flex;
+    flex-direction: column;
+
+    .label {
+        margin-bottom: 0.5rem;
+        color: var(--lila-medio);
+        font-size: 1rem;
+    }
+
+    .input {
+        padding: 0.75rem;
+        border: 1px solid var(--lila-claro);
+        border-radius: 8px;
+        font-size: 1rem;
+        background-color: var(--blanco);
+        color: var(--azul-oscuro);
+        width: 250px;
+        margin-bottom: 1rem;
+    }
+}

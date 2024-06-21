@@ -1,34 +1,52 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/Store";
 import { addMaterial, updateQuantity } from "../../redux/slices/MaterialsSlice.js";
 import styles from "./AddMaterials.module.scss";
-import { FaBoxOpen, FaPlus } from "react-icons/fa";
+import { FaBoxOpen } from "react-icons/fa";
 import { useRouter } from "next/navigation";
+import FiltroCategoria from '../../ui/agregar-lista/FiltroCategoria'
+import FiltroNombre from '../../ui/agregar-lista/FiltroNombre'
+import CardMaterial from '../../ui/agregar-lista/CardMaterial'
+import MaterialSeleccionado from '../../ui/agregar-lista/MaterialSeleccionado'
+import Button from "../../ui/common/Button";
+import Loader from "../../ui/common/Loader";
+import getMateriales from '../../actions/getMateriales'
 
-const materialsDummyData = [
-    { id: 1, name: "Cemento", category: "Construcción" },
-    { id: 2, name: "Arena", category: "Construcción" },
-    { id: 3, name: "Grava", category: "Construcción" },
-    { id: 4, name: "Tablas de Madera", category: "Madera" },
-    { id: 5, name: "Clavos", category: "Ferretería" },
-    // Agrega más materiales de demostración según sea necesario
-];
 
 const AddMaterials: React.FC = () => {
     const [selectedCategory, setSelectedCategory] = useState("");
     const [searchTerm, setSearchTerm] = useState("");
+    const [materials, setMaterials] = useState([])
+    const [loading, setLoading] = useState(false)
 
     const dispatch = useDispatch();
     const selectedMaterials = useSelector((state: RootState) => state.materials.selectedMaterials);
 
-    const filteredMaterials = materialsDummyData.filter((material) => {
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                setLoading(true)
+                const listas = await getMateriales();
+                setMaterials(listas);
+            } catch (error) {
+                console.log(error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchData();
+    }, [])
+
+
+    const filteredMaterials = materials.filter((material) => {
         return (
             (selectedCategory === "" ||
-                material.category === selectedCategory) &&
+                material.categoria === selectedCategory) &&
             (searchTerm === "" ||
-                material.name.toLowerCase().includes(searchTerm.toLowerCase()))
+                material.nombre.toLowerCase().includes(searchTerm.toLowerCase()))
         );
     });
 
@@ -40,114 +58,53 @@ const AddMaterials: React.FC = () => {
         dispatch(updateQuantity({ id, quantity }));
     };
 
-    const router= useRouter();
+    const router = useRouter();
 
-    const handleAddLista= ()=>{
+    const handleAddLista = () => {
         router.push("/enviar-lista-proveedores")
     }
 
     return (
-        <div className={styles.container}>
-            <div className={styles.card}>
-                <div className={styles.selectSection}>
-                    <h1 className={styles.header}>
-                        Agregar Materiales al Proyecto
-                    </h1>
-                    <div className={styles.filters}>
-                        <div className={styles["filter-group"]}>
-                            <label className={styles.label} htmlFor="category">
-                                Filtrar por Categoría
-                            </label>
-                            <select
-                                className={styles.select}
-                                id="category"
-                                value={selectedCategory}
-                                onChange={(e) =>
-                                    setSelectedCategory(e.target.value)
-                                }>
-                                <option value="">Todas las Categorías</option>
-                                <option value="Construcción">
-                                    Construcción
-                                </option>
-                                <option value="Madera">Madera</option>
-                                <option value="Ferretería">Ferretería</option>
-                                {/* Agrega más opciones según las categorías disponibles */}
-                            </select>
+        <>
+            {loading ?
+                <Loader />
+                :
+                <main className={styles.main}>
+                    <div className={styles.layout}>
+                        <div className={styles.selectSection}>
+                            <h2 className={styles.header}>Agregar Materiales al Proyecto</h2>
+                            <div className={styles.filters}>
+                                <FiltroCategoria selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
+                                <FiltroNombre searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+                            </div>
+                            <div className={styles.materialsList}>
+                                {filteredMaterials.map((material) => (
+                                    <CardMaterial key={material._id} material={material} handleAddMaterial={handleAddMaterial} />
+                                ))}
+                            </div>
+                            <Button text={"Continuar para Escoger Proveedores"} action={handleAddLista} />
                         </div>
-                        <div className={styles["filter-group"]}>
-                            <label className={styles.label} htmlFor="search">
-                                Buscar por Nombre
-                            </label>
-                            <input
-                                className={styles.input}
-                                type="text"
-                                id="search"
-                                value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)}
-                            />
+                        <div className={styles.selectedSection}>
+                            <div className={styles.selectedMaterials}>
+                                <h2 className={styles.selectedText}>Materiales Seleccionados</h2>
+                                {selectedMaterials.length === 0 ? (
+                                    <div className={styles.noMaterials}>
+                                        <FaBoxOpen
+                                            className={styles.icon}
+                                        />
+                                        <p>No se han seleccionado materiales aún</p>
+                                    </div>
+                                ) : (
+                                    selectedMaterials.map((material) => (
+                                        <MaterialSeleccionado material={material} handleUpdateQuantity={handleUpdateQuantity} />
+                                    ))
+                                )}
+                            </div>
                         </div>
                     </div>
-                    <div className={styles["materials-list"]}>
-                        {filteredMaterials.map((material) => (
-                            <div
-                                key={material.id}
-                                className={styles["material-item"]}>
-                                <div className={styles["material-info"]}>
-                                    <span className={styles["material-name"]}>
-                                        {material.name}
-                                    </span>
-                                    <span
-                                        className={styles["material-category"]}>
-                                        {material.category}
-                                    </span>
-                                </div>
-                                <button
-                                    className={styles.button}
-                                    onClick={() => handleAddMaterial(material)}>
-                                    <FaPlus />
-                                </button>
-                            </div>
-                        ))}
-                    </div>
-                    <button onClick={handleAddLista} className={styles["continue-button"]}>
-                        Continuar para Escoger Proveedores
-                    </button>
-                </div>
-                <div className={styles.selectedSection}>
-                    <div className={styles["selected-materials"]}>
-                        <h2>Materiales Seleccionados</h2>
-                        {selectedMaterials.length === 0 ? (
-                            <div className={styles["no-materials"]}>
-                                <FaBoxOpen
-                                    className={styles["no-materials-icon"]}
-                                />
-                                <p>No se han seleccionado materiales aún</p>
-                            </div>
-                        ) : (
-                            selectedMaterials.map((material) => (
-                                <div
-                                    key={material.id}
-                                    className={styles["selected-material"]}>
-                                    <p>{material.name}</p>
-                                    <input
-                                        type="number"
-                                        className={styles["quantity-input"]}
-                                        value={material.quantity}
-                                        min="1"
-                                        onChange={(e) =>
-                                            handleUpdateQuantity(
-                                                material.id,
-                                                parseInt(e.target.value, 10)
-                                            )
-                                        }
-                                    />
-                                </div>
-                            ))
-                        )}
-                    </div>
-                </div>
-            </div>
-        </div>
+                </main>
+            }
+        </>
     );
 };
 

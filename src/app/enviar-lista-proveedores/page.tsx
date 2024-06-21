@@ -26,6 +26,8 @@ const Providers: React.FC = () => {
     const fetchProviders = async () => {
       try {
         const response = await getProveedores();
+        console.log(response);
+        
         setProviders(response);
       } catch (error) {
         console.error('Error al obtener los proveedores:', error);
@@ -80,8 +82,8 @@ const Providers: React.FC = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.card}>
+    <main className={styles.main}>
+      <div className={styles.layout}>
         <div className={styles.headerSection}>
           <h1 className={styles.header}>Seleccionar Proveedores</h1>
           <div className={styles.filters}>
@@ -143,7 +145,7 @@ const Providers: React.FC = () => {
         </button>
       </div>
       <ListacreadayenviadaModal isOpen={isModalOpen} onClose={handleCloseModal} message={modalMessage} />
-    </div>
+    </main>
   );
 };
 

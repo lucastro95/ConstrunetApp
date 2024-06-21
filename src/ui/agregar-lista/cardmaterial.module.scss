@@ -1,0 +1,67 @@
+.materialItem {
+    width: 100%;
+    height: 10rem;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s;
+
+    .img {
+        height: 100%;
+        width: 10rem;
+        object-fit: cover;
+        margin-right: 1rem;
+    }
+
+    .info {
+        width: 70%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+
+        .name {
+            font-size: 1.3rem;
+            margin-bottom: 0.2rem;
+            color: var(--azul-oscuro);
+        }
+    
+        .category {
+            font-size: .8rem;
+            color: var(--lila-medio);
+        }
+        
+        .brand {
+            font-size: 1rem;
+            color: var(--lila-medio);
+        }
+
+        .description {
+            margin-top: 2rem;
+            font-size: 1rem;
+            justify-self: flex-end;
+        }
+    }
+
+    .button {
+        color: var(--azul-oscuro);
+        background-color: var(--lila-claro);
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1.25rem;
+        transition: background-color 0.3s;
+
+        &:hover {
+            background-color: var(--lila-medio);
+        }
+    }
+
+}
+.divider {
+    width: 100%;
+    height: 1px;
+    background-color: var(--lila-claro);
+}
