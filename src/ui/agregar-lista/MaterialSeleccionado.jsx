@@ -1,11 +1,11 @@
 import React from 'react'
 import styles from './materialseleccionado.module.scss'
+import { FaTrashAlt } from 'react-icons/fa'
 
-const MaterialSeleccionado = ({ material, handleUpdateQuantity }) => {
+const MaterialSeleccionado = ({ material, handleUpdateQuantity, handleDeleteMaterial }) => {
     return (
-        <div
-            key={material._id}
-            className={styles.material}>
+        <div key={material._id} className={styles.material}>
+            <FaTrashAlt className={styles.trash} onClick={() => handleDeleteMaterial(material._id)}/>
             <p>{material.nombre}</p>
             <input
                 type="number"
@@ -14,7 +14,7 @@ const MaterialSeleccionado = ({ material, handleUpdateQuantity }) => {
                 min="1"
                 onChange={(e) =>
                     handleUpdateQuantity(
-                        material.id,
+                        material._id,
                         parseInt(e.target.value, 10)
                     )
                 }

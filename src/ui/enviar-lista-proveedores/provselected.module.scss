@@ -1,0 +1,19 @@
+.selectedProvider {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid var(--lila-claro);
+
+    &:last-child {
+        border-bottom: none;
+    }
+
+    .removeButton {
+        background-color: transparent;
+        border: none;
+        color: var(--lila-medio);
+        cursor: pointer;
+        font-size: 1.3rem;
+    }
+  }

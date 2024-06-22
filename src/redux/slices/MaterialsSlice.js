@@ -10,7 +10,7 @@ const materialsSlice = createSlice({
   reducers: {
     addMaterial: (state, action) => {
       const existingMaterial = state.selectedMaterials.find(
-        (material) => material.id === action.payload.id
+        (material) => material._id === action.payload._id
       );
       if (existingMaterial) {
         existingMaterial.quantity += 1;
@@ -20,15 +20,20 @@ const materialsSlice = createSlice({
     },
     updateQuantity: (state, action) => {
       const material = state.selectedMaterials.find(
-        (material) => material.id === action.payload.id
+        (material) => material._id === action.payload._id
       );
       if (material) {
         material.quantity = action.payload.quantity;
       }
     },
+    deleteMaterial: (state, action) => {
+      state.selectedMaterials = state.selectedMaterials.filter(
+        (material) => material._id !== action.payload
+      );
+    }
   },
 });
 
-export const { addMaterial, updateQuantity } = materialsSlice.actions;
+export const { addMaterial, updateQuantity, deleteMaterial } = materialsSlice.actions;
 
 export default materialsSlice.reducer;

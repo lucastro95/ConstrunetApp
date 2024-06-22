@@ -9,7 +9,22 @@
         border-bottom: none;
     }
 
+    .trash {
+        color: var(--lila-medio);
+        font-size: 1.2rem;
+        margin-right: 1rem;
+        transition: color .2s;
+
+        cursor: pointer;
+
+        &:hover {
+            color: var(--lila-oscuro);
+        }
+    }
+
     p {
+        width: 60%;
+        text-align: left;
         color: var(--lila-medio);
         margin: 0;
         font-size: 1.2rem;
@@ -18,6 +33,7 @@
     .input {
         width: 50px;
         padding: 0.5rem;
+        margin-left: 1rem;
         border: 1px solid var(--lila-claro);
         border-radius: 8px;
         text-align: center;

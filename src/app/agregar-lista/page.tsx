@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/Store";
-import { addMaterial, updateQuantity } from "../../redux/slices/MaterialsSlice.js";
+import { addMaterial, updateQuantity, deleteMaterial } from "../../redux/slices/MaterialsSlice.js";
 import styles from "./AddMaterials.module.scss";
 import { FaBoxOpen } from "react-icons/fa";
 import { useRouter } from "next/navigation";
@@ -23,6 +23,11 @@ const AddMaterials: React.FC = () => {
 
     const dispatch = useDispatch();
     const selectedMaterials = useSelector((state: RootState) => state.materials.selectedMaterials);
+
+    // useEffect(() => {
+    //   console.log(selectedMaterials);
+    // }, [selectedMaterials])
+    
 
     useEffect(() => {
         const fetchData = async () => {
@@ -58,6 +63,10 @@ const AddMaterials: React.FC = () => {
         dispatch(updateQuantity({ id, quantity }));
     };
 
+    const handleDeleteMaterial = (id: String) => {
+        dispatch(deleteMaterial(id));
+    };
+
     const router = useRouter();
 
     const handleAddLista = () => {
@@ -79,7 +88,10 @@ const AddMaterials: React.FC = () => {
                             </div>
                             <div className={styles.materialsList}>
                                 {filteredMaterials.map((material) => (
-                                    <CardMaterial key={material._id} material={material} handleAddMaterial={handleAddMaterial} />
+                                    <CardMaterial 
+                                        key={material._id} 
+                                        material={material} 
+                                        handleAddMaterial={handleAddMaterial} />
                                 ))}
                             </div>
                             <Button text={"Continuar para Escoger Proveedores"} action={handleAddLista} />
@@ -96,7 +108,11 @@ const AddMaterials: React.FC = () => {
                                     </div>
                                 ) : (
                                     selectedMaterials.map((material) => (
-                                        <MaterialSeleccionado material={material} handleUpdateQuantity={handleUpdateQuantity} />
+                                        <MaterialSeleccionado
+                                            key={material._id}
+                                            material={material} 
+                                            handleUpdateQuantity={handleUpdateQuantity} 
+                                            handleDeleteMaterial={handleDeleteMaterial}/>
                                     ))
                                 )}
                             </div>

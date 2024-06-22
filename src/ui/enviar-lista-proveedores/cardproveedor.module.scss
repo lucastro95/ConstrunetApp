@@ -1,0 +1,36 @@
+.card {
+    background: var(--blanco);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .info {
+        display: flex;
+        flex-direction: column;
+
+        .name {
+            font-size: 1.5rem;
+            color: var(--azul-oscuro);
+        }
+
+        .rating {
+            font-size: 1.25rem;
+            color: var(--lila-medio);
+        }
+    }
+
+    .button {
+        background-color: var(--lila-medio);
+        color: var(--blanco);
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1.25rem;
+        display: flex;
+        align-items: center;
+    }
+}
