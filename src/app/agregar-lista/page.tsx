@@ -34,7 +34,7 @@ const AddMaterials: React.FC = () => {
             try {
                 setLoading(true)
                 const listas = await getMateriales();
-                setMaterials(listas);
+                setMaterials(listas.docs);
             } catch (error) {
                 console.log(error);
             } finally {
