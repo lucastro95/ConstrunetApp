@@ -23,38 +23,38 @@ const Providers: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
   const [recommended, setRecommended] = useState<any[]>([]);
+  const [loadingRecommended, setLoadingRecommended] = useState<boolean>(true);
 
   const selectedMaterials = useSelector((state: RootState) => state.materials.selectedMaterials);
-  // const listado = useSelector((state: RootState) => state.listado);
-  const listado = 'a1e67b4a-b5fb-41e9-a247-bc465a88fca3'
+  const listado = useSelector((state: RootState) => state.listado);
+  // const listado = 'a1e67b4a-b5fb-41e9-a247-bc465a88fca3'
 
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
 
-  useEffect(() => {
-    console.log(selectedProviders);
-    console.log(listado);
-
+  useEffect(() => {  
     const requestBody = {
-      listaId: listado,
+      listaId: listado.listado.listaId,
       listaCuitSeleccionados: selectedProviders
     };
 
     console.log(requestBody);
-    
 
     const fetchRecomendados = async () => {
       try {
+        setLoadingRecommended(true)
         const response = await getProvRecomendados(requestBody);
-        setRecommended(response)
+        setRecommended(response);
         console.log(response);
         
+        setLoadingRecommended(false);
       } catch (error) {
         console.error('Error al enviar la solicitud:', error);
+        setLoadingRecommended(false);
       }
-    }
-    fetchRecomendados()
+    };
 
+    fetchRecomendados()
   }, [selectedProviders])
 
 
@@ -151,6 +151,41 @@ const Providers: React.FC = () => {
             </div>
           </div>
 
+          <div className={styles.recomendaciones}>
+            <h3 className={styles.title}>Proveedores recomendados</h3>
+            {loadingRecommended ? (
+              <p>Cargando recomendaciones...</p>
+            ) : (
+              recommended.mejorPrecio.length === 0 ? (
+                <p className={styles.seleccionados}>Ya se seleccionaron proveedores para todos los materiales</p>
+              ) : (
+                <div className={styles.container}>
+                  <div className={styles.mejorPrecio}>
+                    <h4>Mejor Precio</h4>
+                    {recommended.mejorPrecio.map((item, index) => (
+                      <div key={index}>
+                        <p className={styles.name}>{item.nombre}{item.marca !== "" && ` - ${item.marca}`}</p>
+                        <p>Precio: ${item.precio}</p>
+                        <p>Llega en {item.proveedor.tiempoEntrega} día/s</p>
+                        <CardProveedor provider={item.proveedor} addProvider={addProvider} />
+                      </div>
+                    ))}
+                  </div>
+                  <div className={styles.mejorTiempo}>
+                    <h4>Mejor Tiempo</h4>
+                    {recommended.mejorTiempo.map((item, index) => (
+                      <div key={index}>
+                        <p className={styles.name}>{item.nombre}{item.marca !== "" && ` - ${item.marca}`}</p>
+                        <p>Precio: ${item.precio}</p>
+                        <p>Llega en {item.proveedor.tiempoEntrega} día/s</p>
+                        <CardProveedor provider={item.proveedor} addProvider={addProvider} />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )
+            )}
+          </div>
         </div>
         <Button text={'Enviar Lista a Proveedores'} action={sendMaterialsToProviders} />
       </div>

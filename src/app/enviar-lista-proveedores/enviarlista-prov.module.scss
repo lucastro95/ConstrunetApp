@@ -44,7 +44,7 @@
       display: flex;
       
       .providers {
-        width: 60%;
+        width: 50%;
 
         .providerList {
           display: flex;
@@ -73,6 +73,55 @@
       }
     }
 
+    .recomendaciones {
+      width: 50%;
+      margin-left: 2rem;
+      margin-bottom: 2rem;
+      padding: 2rem;
 
+      background-color: var(--gris-claro);
+      border-radius: 2rem;
+
+      .title {
+        color: var(--azul-oscuro);
+        font-size: 1.3rem;
+      }
+
+      .seleccionados {
+        margin-top: 16rem;
+        font-weight: 700;
+        font-size: 1.5rem;
+        text-align: center;
+        color: var(--lila-oscuro);
+      }
+
+      .container {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+
+        .mejorTiempo,
+        .mejorPrecio {
+          width: 47%;
+          display: flex;
+          flex-direction: column;
+
+          h4 {
+            margin-bottom: .6rem;
+            text-align: center;
+            font-size: 1.3rem;
+          }
+
+          p {
+            margin-bottom: .4rem;
+          }
+
+          .name {
+            margin-bottom: .4rem;
+            font-weight: 700;
+          }
+        }
+      }
+    }
   }
 }
