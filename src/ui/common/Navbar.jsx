@@ -9,6 +9,7 @@ const Navbar = () => {
         <Image 
             src={logo}
             className={styles.logo}
+            alt='Logo Construnet'
         />
         <ul className={styles.items}>
             <li className={styles.item}>

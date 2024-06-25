@@ -12,7 +12,10 @@ import CardMaterial from '../../ui/agregar-lista/CardMaterial'
 import MaterialSeleccionado from '../../ui/agregar-lista/MaterialSeleccionado'
 import Button from "../../ui/common/Button";
 import Loader from "../../ui/common/Loader";
+import Paginacion from '../../ui/agregar-lista/Paginacion'
 import getMateriales from '../../actions/getMateriales'
+import postListado from '../../actions/postListado'
+import { setListado } from "../../redux/slices/listadoSlice";
 
 
 const AddMaterials: React.FC = () => {
@@ -20,6 +23,8 @@ const AddMaterials: React.FC = () => {
     const [searchTerm, setSearchTerm] = useState("");
     const [materials, setMaterials] = useState([])
     const [loading, setLoading] = useState(false)
+    const [page, setPage] = useState(1)
+    const [limit, setLimit] = useState(1)
 
     const dispatch = useDispatch();
     const selectedMaterials = useSelector((state: RootState) => state.materials.selectedMaterials);
@@ -27,24 +32,29 @@ const AddMaterials: React.FC = () => {
     // useEffect(() => {
     //   console.log(selectedMaterials);
     // }, [selectedMaterials])
-    
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                setLoading(true)
-                const listas = await getMateriales();
-                setMaterials(listas);
-            } catch (error) {
-                console.log(error);
-            } finally {
-                setLoading(false);
-            }
-        };
-
         fetchData();
     }, [])
 
+    useEffect(() => {
+        fetchData();
+    }, [page])
+
+
+    const fetchData = async () => {
+        try {
+            setLoading(true)
+            const listas = await getMateriales({ page });
+            // console.log(listas);
+            setMaterials(listas.docs);
+            setLimit(listas.totalPages)
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     const filteredMaterials = materials.filter((material) => {
         return (
@@ -69,7 +79,25 @@ const AddMaterials: React.FC = () => {
 
     const router = useRouter();
 
-    const handleAddLista = () => {
+    const handleAddLista = async () => {
+        const materialsList = selectedMaterials.map(material => ({
+            nombre: material.nombre,
+            peso: material.cantidad,
+            marca: material.marca,
+            cantidad: material.quantity
+        }));
+
+        const requestBody = {
+            listado: materialsList
+        };
+
+        try {
+            const response = await postListado(requestBody);
+            dispatch(setListado(response))
+        } catch (error) {
+            console.error('Error al enviar la solicitud:', error);
+        }
+
         router.push("/enviar-lista-proveedores")
     }
 
@@ -88,11 +116,12 @@ const AddMaterials: React.FC = () => {
                             </div>
                             <div className={styles.materialsList}>
                                 {filteredMaterials.map((material) => (
-                                    <CardMaterial 
-                                        key={material._id} 
-                                        material={material} 
+                                    <CardMaterial
+                                        key={material._id}
+                                        material={material}
                                         handleAddMaterial={handleAddMaterial} />
                                 ))}
+                                <Paginacion page={page} limit={limit} setPage={setPage} />
                             </div>
                             <Button text={"Continuar para Escoger Proveedores"} action={handleAddLista} />
                         </div>
@@ -110,9 +139,9 @@ const AddMaterials: React.FC = () => {
                                     selectedMaterials.map((material) => (
                                         <MaterialSeleccionado
                                             key={material._id}
-                                            material={material} 
-                                            handleUpdateQuantity={handleUpdateQuantity} 
-                                            handleDeleteMaterial={handleDeleteMaterial}/>
+                                            material={material}
+                                            handleUpdateQuantity={handleUpdateQuantity}
+                                            handleDeleteMaterial={handleDeleteMaterial} />
                                     ))
                                 )}
                             </div>

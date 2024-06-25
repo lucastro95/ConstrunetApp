@@ -18,6 +18,7 @@ const page = () => {
           try {
             setLoading(true)
             const listas = await getListas();
+            console.log(listas);
             setListas(listas);
           } catch (error) {
             console.log(error);
@@ -49,7 +50,7 @@ const page = () => {
                   <div className={styles.listas}>
                     {
                         listas.map((lista, index) => (
-                            <CardListas lista={lista} index={index}/>
+                            <CardListas key={lista._id} lista={lista} index={index}/>
                         ))
                     }
                   </div>

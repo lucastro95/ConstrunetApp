@@ -1,13 +1,14 @@
 "use server"
-export default async function getMateriales({page}) {
+export default async function getProvRecomendados(body) {
 
     try {
-        const response =  await fetch(`http://localhost:8080/materiales/?page=${page}&limit=5`, {
-            method: "GET",
+        const response =  await fetch(`http://localhost:8080/lista/recomendaciones`, {
+            method: "POST",
             cache: "no-store",
             headers: {
                 "Content-Type": "application/json", // Specify the content type
             },
+            body: JSON.stringify(body)
         });
 
         // console.log("Full Response:", response); 

@@ -1,0 +1,32 @@
+.container {
+    width: 6rem;
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .icon {
+        font-size: 1.5rem;
+        color: var(--lila-medio);
+        margin: 0 .5rem;
+        cursor: pointer;
+        visibility: visible;
+        opacity: 1;
+        transition: opacity 0.3s ease;
+    }
+
+    .disabled {
+        font-size: 1.5rem;
+        color: var(--lila-medio);
+        margin: 0 .5rem;
+        cursor: pointer;
+        transition: opacity 0.3s ease;
+        visibility: hidden;
+        opacity: 0;
+    }
+
+    .page {
+        color: var(--azul-oscuro);
+        font-size: 1.5rem;
+    }
+}

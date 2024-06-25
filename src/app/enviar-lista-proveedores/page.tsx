@@ -5,7 +5,7 @@ import { RootState, AppDispatch } from '../../redux/Store';
 import styles from './enviarlista-prov.module.scss';
 import getProveedores from '../../actions/getProveedores';
 import postEnvioListaProvee from '../../actions/postEnvioListaProvee';
-import { FaSort, FaSearch, FaCheck, FaTrashAlt } from "react-icons/fa";
+import getProvRecomendados from '../../actions/getProvRecomendados';
 import ListacreadayenviadaModal from './ListacreadayenviadaModal';
 import { useRouter } from 'next/navigation';
 import { setProveedor } from '../../redux/slices/proveedorSlice';
@@ -22,10 +22,41 @@ const Providers: React.FC = () => {
   const [providers, setProviders] = useState<any[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
+  const [recommended, setRecommended] = useState<any[]>([]);
 
   const selectedMaterials = useSelector((state: RootState) => state.materials.selectedMaterials);
+  // const listado = useSelector((state: RootState) => state.listado);
+  const listado = 'a1e67b4a-b5fb-41e9-a247-bc465a88fca3'
+
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
+
+  useEffect(() => {
+    console.log(selectedProviders);
+    console.log(listado);
+
+    const requestBody = {
+      listaId: listado,
+      listaCuitSeleccionados: selectedProviders
+    };
+
+    console.log(requestBody);
+    
+
+    const fetchRecomendados = async () => {
+      try {
+        const response = await getProvRecomendados(requestBody);
+        setRecommended(response)
+        console.log(response);
+        
+      } catch (error) {
+        console.error('Error al enviar la solicitud:', error);
+      }
+    }
+    fetchRecomendados()
+
+  }, [selectedProviders])
+
 
   useEffect(() => {
     const fetchProviders = async () => {
@@ -46,9 +77,9 @@ const Providers: React.FC = () => {
 
   const addProvider = (provider: { cuit: string, nombreProveedor: string }) => {
     const providerExists = selectedProviders.some(selectedProvider => selectedProvider === provider.cuit);
-    
+
     if (!providerExists) {
-        setSelectedProviders([...selectedProviders, provider.cuit]);
+      setSelectedProviders([...selectedProviders, provider.cuit]);
     }
   };
 
@@ -113,7 +144,7 @@ const Providers: React.FC = () => {
                 selectedProviders.map(cuit => {
                   const provider = providers.find(p => p.cuit === cuit);
                   return (
-                    <ProvSelected key={provider.cuit} provider={provider} removeProvider={removeProvider}/>
+                    <ProvSelected key={provider.cuit} provider={provider} removeProvider={removeProvider} />
                   );
                 })
               )}
