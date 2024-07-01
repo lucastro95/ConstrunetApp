@@ -20,20 +20,24 @@ const CardProveedor = ({ lista, index }) => {
     return (
         <div className={`${styles.card} ${active ? styles.active : ""}`}>
             <div className={styles.title}>
-                <h3 className={styles.name}>Lista n°{index + 1}</h3>
+                <h3 className={styles.name}>Lista n°{index + 1} </h3>
+                <h3 className={styles.estado}>Estado: <span>Presupuesto Confirmado</span></h3>
                 <button className={styles.btn} onClick={handleClick}>
                     <IoIosArrowUp className={`${styles.icon} ${active ? styles.rotated : ""}`} size={20} />
                 </button>
             </div>
             <div className={styles.content}>
                 <div className={styles.info}>
-                    <h3 className={styles.estado}>Estado: <span>Presupuesto Confirmado</span></h3>
+                    
                 </div>
                 {lista.materiales.map((material, index) => (
                     <React.Fragment key={index}>
                         <div className={styles.material}>
-                            <p className={styles.cant}>{material.cantidad}u.</p>
                             <p className={styles.nomb}>{material.nombre}</p>
+                            <p className={styles.nomb}>{material.descripcion}</p>
+                            <p className={styles.cant}>{material.marca}</p>
+                            <p className={styles.cant}>{material.categoria}</p>
+                            <p className={styles.cant}>{material.cantidad}-{material.unidad}</p>
                         </div>
                         <div className={styles.divider} />
                     </React.Fragment>
