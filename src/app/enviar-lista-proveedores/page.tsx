@@ -27,7 +27,6 @@ const Providers: React.FC = () => {
 
   const selectedMaterials = useSelector((state: RootState) => state.materials.selectedMaterials);
   const listado = useSelector((state: RootState) => state.listado);
-  // const listado = 'a1e67b4a-b5fb-41e9-a247-bc465a88fca3'
 
   const dispatch = useDispatch<AppDispatch>();
   const router = useRouter();
