@@ -82,9 +82,11 @@ const AddMaterials: React.FC = () => {
     const handleAddLista = async () => {
         const materialsList = selectedMaterials.map(material => ({
             nombre: material.nombre,
-            peso: material.cantidad,
+            descripcion: material.descripcion,
             marca: material.marca,
-            cantidad: material.quantity
+            unidad: material.unidad,
+            cantidad: material.quantity,
+            categoria: material.categoria
         }));
 
         const requestBody = {

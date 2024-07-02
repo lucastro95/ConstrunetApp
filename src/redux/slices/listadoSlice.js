@@ -10,7 +10,6 @@ export const listadoSlice = createSlice({
   reducers: {
     setListado: (state, action) => {
       state.listado = action.payload
-      console.log(state.listado);
     },
   },
 });

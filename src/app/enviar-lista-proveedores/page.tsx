@@ -37,14 +37,13 @@ const Providers: React.FC = () => {
       listaCuitSeleccionados: selectedProviders
     };
 
-    console.log(requestBody);
-
     const fetchRecomendados = async () => {
       try {
         setLoadingRecommended(true)
         const response = await getProvRecomendados(requestBody);
-        setRecommended(response);
         console.log(response);
+        
+        setRecommended(response);
         
         setLoadingRecommended(false);
       } catch (error) {
@@ -94,15 +93,13 @@ const Providers: React.FC = () => {
     const providersCUIT = selectedProviders.map(cuit => cuit).filter(cuit => cuit !== null);
     dispatch(setProveedor(providersCUIT[0]))
 
-    const materialsList = selectedMaterials.map(material => ({
-      nombre: material.name,
-      cantidad: material.quantity,
-    }));
-
     const requestBody = {
-      listado: materialsList,
-      proveedores: providersCUIT,
+      listaId: listado.listado.listaId,
+      proveedores: providersCUIT
     };
+
+    console.log(requestBody);
+    
 
     try {
       const response = await postEnvioListaProvee(requestBody);

@@ -12,7 +12,7 @@ const CardProveedor = ({ proveedor }) => {
     return (
         <div className={`${styles.card} ${active ? styles.active : ""}`}>
             <div className={styles.title}>
-                <h3 className={styles.name}>{proveedor.NombreProveedor}</h3>
+                <h3 className={styles.name}>{proveedor.nombreProveedor}</h3>
                 <button className={styles.btn} onClick={handleClick}>
                     <IoIosArrowUp className={`${styles.icon} ${active ? styles.rotated : ""}`} size={20} />
                 </button>

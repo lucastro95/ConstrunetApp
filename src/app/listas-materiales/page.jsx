@@ -18,7 +18,6 @@ const page = () => {
           try {
             setLoading(true)
             const listas = await getListas();
-            console.log(listas);
             setListas(listas);
           } catch (error) {
             console.log(error);

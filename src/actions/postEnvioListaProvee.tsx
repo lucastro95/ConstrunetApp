@@ -2,7 +2,8 @@
 export default async function getPresupuestoOptimo(lista) {
 
     try {
-        const response =  await fetch(`http://localhost:8080/lista`, {
+        
+        const response =  await fetch(`http://localhost:8080/lista/guardarProveedores`, {
             method: "POST",
             cache: "no-store",
             headers: {
