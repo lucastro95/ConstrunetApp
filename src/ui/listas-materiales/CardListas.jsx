@@ -27,17 +27,12 @@ const CardProveedor = ({ lista, index }) => {
                 </button>
             </div>
             <div className={styles.content}>
-                <div className={styles.info}>
-                    
-                </div>
                 {lista.materiales.map((material, index) => (
                     <React.Fragment key={index}>
                         <div className={styles.material}>
-                            <p className={styles.nomb}>{material.nombre}</p>
-                            <p className={styles.nomb}>{material.descripcion}</p>
-                            <p className={styles.cant}>{material.marca}</p>
-                            <p className={styles.cant}>{material.categoria}</p>
-                            <p className={styles.cant}>{material.cantidad}-{material.unidad}</p>
+                            <p className={styles.categoria}>{material.categoria}</p>
+                            <p className={styles.nomb}>{material.nombre} {material.marca && ` - ${material.marca}`}</p>
+                            <p className={styles.desc}>{material.descripcion} - {material.cantidad} {material.unidad}</p>
                         </div>
                         <div className={styles.divider} />
                     </React.Fragment>

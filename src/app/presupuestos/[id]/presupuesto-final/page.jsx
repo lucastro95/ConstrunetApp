@@ -17,8 +17,6 @@ const Page = ({ params }) => {
 
   const presupuesto = useSelector((state) => state.presupuesto);
 
-  console.log(presupuesto);
-
   const handleRegenerarPresupuesto = () => {
     router.push(`/presupuestos/${id}`);
   };
@@ -27,7 +25,7 @@ const Page = ({ params }) => {
     return <Loader />; // Muestra un loader mientras los datos están cargando
   }
 
-  const labels = presupuesto.data.presupuestos.map(p => p.NombreProveedor);
+  const labels = presupuesto.data.presupuestos.map(p => p.nombreProveedor);
   const data = presupuesto.data.presupuestos.map(p => p.precioParcial);
 
   const colors = [
@@ -56,15 +54,15 @@ const Page = ({ params }) => {
         <Calendario presupuestos={presupuesto.data.presupuestos} />
         <h2>Resumen</h2>
         {presupuesto.data.presupuestos.map(prov => (
-          <CardProveedor key={prov.NombreProveedor} proveedor={prov} />
+          <CardProveedor key={prov.nombreProveedor} proveedor={prov} />
         ))}
         {
           presupuesto.data.materialesSinProveedor.length !== 0 &&
           <div className={styles.sinProv}>
             <h2>Materiales sin proveedor</h2>
             {
-              presupuesto.data.materialesSinProveedor.map(material => (
-                <p>{material}</p>
+              presupuesto.data.materialesSinProveedor.map((material, index) => (
+                <p key={index}>{material}</p>
               ))
             }
           </div>

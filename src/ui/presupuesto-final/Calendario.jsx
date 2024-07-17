@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import styles from './calendario.module.scss'
@@ -6,6 +6,7 @@ import styles from './calendario.module.scss'
 const CalendarComponent = ({ presupuestos }) => {
     const [value, setValue] = useState(new Date());
     const [selectedDateInfo, setSelectedDateInfo] = useState([]);
+
   
     // Función para calcular las fechas de entrega y los detalles asociados
     const calculateDeliveryInfo = () => {
@@ -23,7 +24,7 @@ const CalendarComponent = ({ presupuestos }) => {
         }
   
         deliveryInfo[formattedDate].push({
-          proveedor: presupuesto.NombreProveedor,
+          proveedor: presupuesto.nombreProveedor,
           materiales: presupuesto.materiales
         });
       });
@@ -72,7 +73,7 @@ const CalendarComponent = ({ presupuestos }) => {
                   <ul>
                     {info.materiales.map((material, idx) => (
                       <li key={idx}>
-                        1{material.cantidad}u. - {material.nombre}
+                        {material.cantidad} {material.unidad} - {material.nombre} {material.marca && ` ${material.marca}`}
                       </li>
                     ))}
                   </ul>

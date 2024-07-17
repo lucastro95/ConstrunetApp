@@ -1,7 +1,7 @@
 "use server"
 export default async function getPresupuestoOptimo(filters, id) {
 
-    console.log(filters.menorPrecio);
+    console.log(filters, id);
 
     try {
         const response =  await fetch(`http://localhost:8080/presupuestos/opti?menorPrecio=${filters.menorPrecio}&tiempoEntrega=${filters.tiempoEntrega}&lista=${id}`, {

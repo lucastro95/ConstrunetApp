@@ -41,19 +41,30 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        font-weight: 700;
+        flex-wrap: wrap;
 
-        .cant {
-            width: 20%;
+        .categoria {
+            width: 100%;
+            font-size: .8rem;
+            color: var(--azul-oscuro);
         }
 
         .nomb {
-            width: 30%;
+            width: 100%;
             text-align: left;
+            color: var(--lila-oscuro);
+            font-size: 1.2rem;
+            margin-bottom: .5rem;
+            font-weight: 700;
         }
 
-        .precio {
-            width: 30%;
+        .desc {
+            width: 100%;
+            font-size: .8rem;
+        }
+
+        .cant {
+            width: 20%;
         }
     }
 

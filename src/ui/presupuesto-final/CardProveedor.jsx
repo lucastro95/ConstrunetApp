@@ -21,9 +21,9 @@ const CardProveedor = ({ proveedor }) => {
                 {proveedor.materiales.map((material, index) => (
                     <React.Fragment key={index}>
                         <div className={styles.material}>
-                            <p className={styles.cant}>{material.cantidad}u.</p>
-                            <p className={styles.nomb}>{material.nombre} {material.marca}</p>
-                            <p className={styles.precio}>${material.precio}</p>
+                            <p className={styles.categoria}>{material.categoria}</p>
+                            <p className={styles.nomb}>{material.nombre} {material.marca && ` - ${material.marca}`}</p>
+                            <p className={styles.desc}>{material.cantidad} {material.unidad}</p>
                         </div>
                         <div className={styles.divider} />
                     </React.Fragment>

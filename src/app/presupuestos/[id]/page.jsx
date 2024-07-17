@@ -35,7 +35,6 @@ const page = ({ params }) => {
       try {
         setLoading(true)
         const presupuestos = await getPresupuestosConfir(id);
-        console.log(presupuestos);
         setPresupuestos(presupuestos);
       } catch (error) {
         console.log(error);
